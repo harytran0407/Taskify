@@ -17,6 +17,219 @@ body{
     background: #1e293b;
 }
 
+/* Header */
+.header{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fffdf8;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.header-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.header h1 a{
+
+    font-size: 28px;
+    text-decoration: none;
+    color: #333;
+    padding-left: 60px;
+}
+
+.search-container{
+    width:100%;
+    position: relative;
+    max-width: 600px;
+}
+
+.search-container input{
+    width: 100%;
+    padding: 8px 50px 8px 16px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+
+    background: #fff; /* nền xám nhạt */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.search-icon {
+    position: absolute;
+    right:0px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: #ff5a5f; 
+    color: white;
+    width: 40px;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.search-icon:hover {
+    background: #e04848;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.actions{
+    display: flex;
+    gap: 10px; /* khoảng cách giữa notification và schedule */
+    margin-left: 20px; /* cách search 20px */
+    margin-right: 20px;
+}
+
+.notification, .schedule{
+    border: none;
+    background: #ff5a5f; 
+    color: white;
+    width: 40px;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.notification:hover, .schedule:hover {
+    background: #e04848;
+    transform: scale(1.05);
+}
+
+.date {
+    display:flex;
+    flex-direction: column;    
+}
+
+#current-date{
+    font-size: 14px;
+    color: #333;
+    padding-right: 20px;
+}
+
+#current-day{
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Sidebar */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+}
+
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #ff5a5f;
+    padding: 20px 15px;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+    margin: 0 0 20px;
+    font-size: 20px;
+}
+.logo span {
+    color: #ff2e2e;
+}
+
+/* Profile */
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.profile img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+.profile h3 {
+    margin: 10px 0 5px;
+    font-size: 14px;
+}
+.profile p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Menu */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Active item */
+.sidebar-menu li.active {
+    background: white;
+    color: #ff5a5f;
+    font-weight: bold;
+}
+
+
+
+/* Logout */
+.logout {
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logout:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Main Content */
 .wrapper{
     width: 400px;
     background: #fff;

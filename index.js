@@ -2,6 +2,7 @@ const taskInput = document.querySelector('.task-input input');
 const taskBox = document.querySelector('.task-box');
 const clearAll = document.querySelector('.clear-btn');
 const filters = document.querySelectorAll('.filters span');
+const sidebar = document.querySelectorAll('.sidebar-menu li');
 
 let editId;
 let isEditedTask = false;
@@ -14,6 +15,36 @@ filters.forEach(btn => {
         showTodo(btn.id);
     });
 });
+
+sidebar.forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelector('li.active').classList.remove('active');
+        btn.classList.add('active');
+    });
+});
+
+function updateDateTime() {
+    const now = new Date();
+
+    // Ngày
+    const date = now.toLocaleDateString("en-US", {
+        day: "numeric",month: "numeric",year: "numeric"
+    });
+
+    // Giờ
+    const weekday = now.toLocaleDateString("en-US", {
+        weekday: "long"
+    });
+
+    document.getElementById("current-date").innerText = date;
+    document.getElementById("current-day").innerText = weekday;
+}
+
+// chạy lần đầu
+updateDateTime();
+
+// cập nhật mỗi giây
+setInterval(updateDateTime, 1000);
 
 function showTodo(filter) {
     let liTag = '';
