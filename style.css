@@ -61,7 +61,7 @@ body{
 .search-container{
     width:100%;
     position: relative;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .search-container input{
@@ -73,7 +73,7 @@ body{
     font-size: 14px;
 
     background: #fff; /* nền xám nhạt */
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
 }
 
 .search-icon {
