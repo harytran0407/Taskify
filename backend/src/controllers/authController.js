@@ -1,3 +1,4 @@
+console.log("🚀 FILE LOADED");
 import {pool} from '../config/db.js';
 import sql from 'mssql';
 import bcrypt from 'bcrypt';
@@ -16,14 +17,14 @@ export const register = async (req, res) => {
         .query('INSERT INTO Users (username, email, password) VALUES (@username, @email, @password)');
     res.status(201).json({ message: 'Đăng ký thành công' });
 }
-
+console.log("👉 LOGIN FUNCTION START");
 export const login = async (req, res) => {
   try {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   const result = await pool.request()
-    .input('username', sql.NVarChar, username)
-    .query('SELECT * FROM Users WHERE username = @username');
+    .input('email', sql.NVarChar, email)
+    .query('SELECT * FROM Users WHERE email = @email');
 
 const user = result.recordset[0];
 if (!user) {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="../assests/css/login.css">
+    <title>Register - Taskify</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <div class="logo">
+                <h1>Taskify</h1>
+                <p>Plan Your Day Efficiently</p>
+            </div>
+            <h2>Create Account</h2>
+            <p class="subtitle">Join us and start managing your tasks</p>
+            <div id="errorMessage" class="error-message"></div>
+            <form id="registerForm" autocomplete="off">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <div class="input-wrapper">
+                        <i class="uil uil-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="off" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="uil uil-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="off" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="uil uil-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="off" required>
+                        <i class="uil uil-eye toggle-password"></i>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <i class="uil uil-lock"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" autocomplete="off" required>
+                        <i class="uil uil-eye toggle-confirm"></i>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>Create Account</span>
+                    <i class="uil uil-arrow-right"></i>
+                </button>
+            </form>
+            <p class="register-link">Already have an account? <a href="login.html">Sign in</a></p>
+        </div>
+    </div>
+    <script src="../assests/js/register.js"></script>
+</body>
+</html>

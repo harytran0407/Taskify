@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="../assests/css/login.css">
+    <title>Login - Taskify</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <div class="logo">
+                <h1>Taskify</h1>
+                <p>Plan Your Day Efficiently</p>
+            </div>
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Sign in to your account</p>
+            <div id="errorMessage" class="error-message"></div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="uil uil-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="uil uil-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <i class="uil uil-eye toggle-password"></i>
+                    </div>
+                </div>
+                <div class="options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>Sign In</span>
+                    <i class="uil uil-arrow-right"></i>
+                </button>
+            </form>
+            <p class="register-link">Don't have an account? <a href="register.html">Create one</a></p>
+        </div>
+    </div>
+    <script src="../assests/js/login.js"></script>
+</body>
+</html>
