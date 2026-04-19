@@ -8,52 +8,96 @@
     <title>Register - Taskify</title>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-form">
-            <div class="logo">
-                <h1>Taskify</h1>
-                <p>Plan Your Day Efficiently</p>
+    <div class="page-wrapper">
+        <div class="auth-card">
+            <div class="form-panel">
+                <div class="brand-panel">
+                    
+                </div>
+                <div class="form-content">
+                    <div class="form-header">
+                        <h2>Sign Up</h2>
+                        <p class="subtitle">Join us and start managing your tasks</p>
+                    </div>
+                    <div id="errorMessage" class="error-message"></div>
+                    <form id="registerForm" autocomplete="off">
+                        <div class="input-group">
+                            <label for="username">Username</label>
+                            <div class="input-wrapper">
+                                <i class="uil uil-user"></i>
+                                <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="uil uil-envelope"></i>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="uil uil-lock"></i>
+                                <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="off" required>
+                                <i class="uil uil-eye toggle-password"></i>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="input-wrapper">
+                                <i class="uil uil-lock"></i>
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" autocomplete="off" required>
+                                <i class="uil uil-eye toggle-confirm"></i>
+                            </div>
+                        </div>
+                        <button type="submit" class="login-btn">
+                            <span>Create Account</span>
+                            <i class="uil uil-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div class="social-login">
+                        <span>Or, Sign up with</span>
+                        <div class="social-buttons">
+                            <button class="social-btn google">
+                                <img src="../assests/images/icon/google.png" alt="Google">
+                                Tiếp tục bằng Google
+                            </button>
+                            <button class="social-btn facebook">
+                                <img src="../assests/images/icon/facebook.webp" alt="Facebook">
+                                Tiếp tục bằng Facebook
+                            </button>
+                        </div>
+                    </div>
+                    <p class="register-link">Already have an account? <a href="login.html">Sign in</a></p>
+                </div>
             </div>
-            <h2>Create Account</h2>
-            <p class="subtitle">Join us and start managing your tasks</p>
-            <div id="errorMessage" class="error-message"></div>
-            <form id="registerForm" autocomplete="off">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <div class="input-wrapper">
-                        <i class="uil uil-user"></i>
-                        <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="off" required>
+            <div class="visual-panel">
+                <div class="visual-card">
+                    <div class="visual-circle"></div>
+                    <div class="mobile-card">
+                        <div class="mobile-header">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="mobile-screen">
+                            <div class="status-chip">
+                                <i class="uil uil-check-circle"></i>
+                            </div>
+                            <div class="screen-line"></div>
+                            <div class="screen-line short"></div>
+                            <div class="screen-row">
+                                <div class="screen-block"></div>
+                                <div class="screen-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="illustration-text">
+                        <h3>Welcome to Taskify</h3>
+                        <p>Create your account to manage tasks faster and stay organized every day.</p>
                     </div>
                 </div>
-                <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <div class="input-wrapper">
-                        <i class="uil uil-envelope"></i>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="off" required>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <div class="input-wrapper">
-                        <i class="uil uil-lock"></i>
-                        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="off" required>
-                        <i class="uil uil-eye toggle-password"></i>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <div class="input-wrapper">
-                        <i class="uil uil-lock"></i>
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" autocomplete="off" required>
-                        <i class="uil uil-eye toggle-confirm"></i>
-                    </div>
-                </div>
-                <button type="submit" class="login-btn">
-                    <span>Create Account</span>
-                    <i class="uil uil-arrow-right"></i>
-                </button>
-            </form>
-            <p class="register-link">Already have an account? <a href="login.html">Sign in</a></p>
+            </div>
         </div>
     </div>
     <script src="../assests/js/register.js"></script>

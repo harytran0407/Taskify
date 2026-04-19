@@ -8,43 +8,87 @@
     <title>Login - Taskify</title>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-form">
-            <div class="logo">
-                <h1>Taskify</h1>
-                <p>Plan Your Day Efficiently</p>
+    <div class="page-wrapper">
+        <div class="auth-card">
+            <div class="form-panel">
+                <div class="brand-panel">
+                
+                </div>
+                <div class="form-content">
+                    <div class="form-header">
+                        <h2>Sign In</h2>
+                        <p class="subtitle">Đăng nhập để tiếp tục với các todo của bạn</p>
+                    </div>
+                    <div id="errorMessage" class="error-message"></div>
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <label for="email">Username</label>
+                            <div class="input-wrapper">
+                                <i class="uil uil-user"></i>
+                                <input type="text" id="email" name="email" placeholder="Enter Username" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="uil uil-lock"></i>
+                                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                                <i class="uil uil-eye toggle-password"></i>
+                            </div>
+                        </div>
+                        <div class="options">
+                            <label class="remember-me">
+                                <input type="checkbox" id="remember"> Remember Me
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="login-btn">
+                            <span>Login</span>
+                            <i class="uil uil-arrow-right"></i>
+                        </button>
+                    </form>
+                    <div class="social-login">
+
+                        <div class="social-buttons">
+                            <button class="social-btn google">
+                                <img src="../assests/images/icon/google.png" alt="Google">
+                                Tiếp tục bằng Google
+                            </button>
+                            <button class="social-btn facebook">
+                                <img src="../assests/images/icon/facebook.webp" alt="Facebook">
+                                Tiếp tục bằng Facebook
+                            </button>
+                        </div>
+                    </div>
+                    <p class="register-link">Don't have an account? <a href="register.html">Create One</a></p>
+                </div>
             </div>
-            <h2>Welcome Back</h2>
-            <p class="subtitle">Sign in to your account</p>
-            <div id="errorMessage" class="error-message"></div>
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <div class="input-wrapper">
-                        <i class="uil uil-envelope"></i>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <div class="visual-panel">
+                <div class="visual-card">
+                    <div class="visual-circle"></div>
+                    <div class="mobile-card">
+                        <div class="mobile-header">
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="mobile-screen">
+                            <div class="status-chip">
+                                <i class="uil uil-check-circle"></i>
+                            </div>
+                            <div class="screen-line"></div>
+                            <div class="screen-line short"></div>
+                            <div class="screen-row">
+                                <div class="screen-block"></div>
+                                <div class="screen-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="illustration-text">
+                        <h3>Secure access to your tasks</h3>
+                        <p>Fast login, clean layout, and a modern look for your productivity flow.</p>
                     </div>
                 </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <div class="input-wrapper">
-                        <i class="uil uil-lock"></i>
-                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                        <i class="uil uil-eye toggle-password"></i>
-                    </div>
-                </div>
-                <div class="options">
-                    <label class="remember-me">
-                        <input type="checkbox" id="remember"> Remember me
-                    </label>
-                    <a href="#" class="forgot-password">Forgot password?</a>
-                </div>
-                <button type="submit" class="login-btn">
-                    <span>Sign In</span>
-                    <i class="uil uil-arrow-right"></i>
-                </button>
-            </form>
-            <p class="register-link">Don't have an account? <a href="register.html">Create one</a></p>
+            </div>
         </div>
     </div>
     <script src="../assests/js/login.js"></script>

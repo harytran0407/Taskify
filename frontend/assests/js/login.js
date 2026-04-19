@@ -72,43 +72,32 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
 
         try {
-            const apiBaseUrl = (window.location.origin && window.location.origin !== 'null') ? window.location.origin : 'http://localhost:3000';
-            const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
+            const response = await fetch('http://localhost:3000/api/auth/login', {
                 method: 'POST',
-                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ email, password })
             });
 
-            const rawBody = await response.text();
-            let data;
-            try {
-                data = rawBody ? JSON.parse(rawBody) : {};
-            } catch {
-                data = {};
-            }
+            const data = await response.json();
 
-            if (!response.ok) {
-                showError(data.message || `Login failed: ${response.status} ${response.statusText}`);
+            if (response.ok) {
+                // Login successful
+                localStorage.setItem('token', data.token);
+                showError('Login successful! Redirecting...');
+                errorMessage.style.background = '#e8f5e8';
+                errorMessage.style.color = '#2e7d32';
+                errorMessage.style.borderLeftColor = '#2e7d32';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
             } else {
-                if (!data.token) {
-                    showError('Login succeeded but token was not returned.');
-                } else {
-                    localStorage.setItem('token', data.token);
-                    showError('Login successful! Redirecting...');
-                    errorMessage.style.background = '#e8f5e8';
-                    errorMessage.style.color = '#2e7d32';
-                    errorMessage.style.borderLeftColor = '#2e7d32';
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1000);
-                }
+                showError(data.message || 'Login failed. Please check your credentials.');
             }
         } catch (error) {
             console.error('Error:', error);
-            showError(`Network error: ${error.message}`);
+            showError('Network error. Please check your connection and try again.');
         } finally {
             // Reset button
             submitBtn.innerHTML = '<span>Sign In</span><i class="uil uil-arrow-right"></i>';
