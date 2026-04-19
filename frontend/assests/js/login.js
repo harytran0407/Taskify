@@ -85,6 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 // Login successful
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('username', data.username);
+                localStorage.setItem('email', data.email);
                 showError('Login successful! Redirecting...');
                 errorMessage.style.background = '#e8f5e8';
                 errorMessage.style.color = '#2e7d32';

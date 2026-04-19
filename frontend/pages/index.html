@@ -38,32 +38,37 @@
         </div>
     </header>
 
-    <div class="sidebar">
-        <h2 class="logo"><span>Dash</span>board</h2>
+    <div class="page-container">
+        <div class="sidebar">
+            <div id="auth-section">
+                <div class="profile" id="profile-section" style="display: none;">
+                    <img src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/588546170_1361983112261783_61586126430797922_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=YkwRyU54XhgQ7kNvwFxJ6mA&_nc_oc=AdqCWXtYjprEB739yFYtC5YxB-jiPo_wNHGpyEH9mSrahDDAPt6lQPJIcfqB6T2UJNs&_nc_zt=23&_nc_ht=scontent.fsgn5-11.fna&_nc_gid=_taEnPOQ8DB8AMKHN-Qt1w&_nc_ss=7a3a8&oh=00_Af3I41mIjrlJLMtvCpTJIANk2achUrE_mCgH6Feay81oiA&oe=69DEE0BC" alt="avatar">
+                    <h3></h3>
+                    <p></p>
+                </div>
 
-        <div class="profile">
-            <img src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/588546170_1361983112261783_61586126430797922_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=YkwRyU54XhgQ7kNvwFxJ6mA&_nc_oc=AdqCWXtYjprEB739yFYtC5YxB-jiPo_wNHGpyEH9mSrahDDAPt6lQPJIcfqB6T2UJNs&_nc_zt=23&_nc_ht=scontent.fsgn5-11.fna&_nc_gid=_taEnPOQ8DB8AMKHN-Qt1w&_nc_ss=7a3a8&oh=00_Af3I41mIjrlJLMtvCpTJIANk2achUrE_mCgH6Feay81oiA&oe=69DEE0BC" alt="avatar">
-            <h3>Evin Tran</h3>
-            <p>evin.tran@gmail.com</p>
+                <div class="auth-buttons" id="auth-buttons">
+                    <a href="login.html" class="btn-signin">Sign In</a>
+                    <a href="register.html" class="btn-signup">Sign Up</a>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="active">Dashboard</li>
+                <li>Vital Task</li>
+                <li>My Task</li>
+                <li>Task Categories</li>
+                <li>Settings</li>
+                <li>Information</li>
+            </ul>
+
+            <div class="logout" id="logout-btn" style="display: none;">
+                <i class="uil uil-signout"></i>
+                <span>Logout</span>
+            </div>
         </div>
 
-        <ul class="sidebar-menu">
-            <li class="active">Dashboard</li>
-            <li>Vital Task</li>
-            <li>My Task</li>
-            <li>Task Categories</li>
-            <li>Settings</li>
-            <li>Help</li>
-        </ul>
-
-        <div class="logout">
-            <i class="uil uil-signout"></i>
-            <span>Logout</span>
-        </div>
-    </div>
-    
-
-    <div class="wrapper">
+        <div class="wrapper">
         <h1>Plan Your Day</h1>
         <div class="task-input">
             <img src="../assests/images/icon/bars-icon.svg" >
@@ -80,6 +85,8 @@
         </div>
 
         <ul class="task-box"></ul>
+        </div>
+    </div>
     <script type="module" src="../assests/js/main.js"></script>
 </body>
 </html>

@@ -13,5 +13,15 @@ const config = {
     }
 };
 
+// Test database config
+console.log('=== DATABASE CONFIG ===');
+console.log('Config:', {
+  user: config.user,
+  password: config.password ? '***' : 'NOT SET',
+  server: config.server,
+  database: config.database
+});
+console.log('=======================');
+
 export const pool = await sql.connect(config);
 export default sql;

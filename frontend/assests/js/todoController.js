@@ -1,6 +1,6 @@
-import { getTodos, saveTodos } from '../services/storageService.js';
-import { addTodo, deleteTodo, editTodo, updateStatusTodo, clearAllTodos } from '../models/todoModel.js';
-import { renderTodos } from '../views/todoView.js';
+import { getTodos, saveTodos } from '../../../backend/src/services/storageService.js';
+import { addTodo, deleteTodo, editTodo, updateStatusTodo, clearAllTodos } from '../../../backend/src/models/todoModel.js';
+import { renderTodos } from '../../../backend/src/views/todoView.js';
 
 let todos = getTodos();
 let editId;
