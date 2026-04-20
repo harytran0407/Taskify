@@ -87,7 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('username', data.username);
                 localStorage.setItem('email', data.email);
-                showError('Login successful! Redirecting...');
+
+                // Set joined date if not exists
+                if (!localStorage.getItem('joinedDate')) {
+                    localStorage.setItem('joinedDate', new Date().toLocaleDateString());
+                }
+
+                showError('Login successful!');
                 errorMessage.style.background = '#e8f5e8';
                 errorMessage.style.color = '#2e7d32';
                 errorMessage.style.borderLeftColor = '#2e7d32';
@@ -99,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Error:', error);
-            showError('Network error. Please check your connection and try again.');
+            showError('Sever error. Please check your sever and try again.');
         } finally {
             // Reset button
             submitBtn.innerHTML = '<span>Sign In</span><i class="uil uil-arrow-right"></i>';

@@ -1,0 +1,228 @@
+
+/* Information Tab Styles */
+#information-content .info-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    color: #111827;
+}
+
+#info-header  {
+    color: #111827;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+
+    /* 👇 đảm bảo nằm trái */
+    display: flex;
+    margin-left: 30px;
+
+    /* 👇 để dùng pseudo-element */
+    position: relative;
+    padding-bottom: 8px;
+}
+#info-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 120px;              /* độ dài thanh */
+    height: 3px;
+    background: #ff5a5f;      /* màu cam */
+    border-radius: 2px;
+}
+
+#information-content .info-container .info-section {
+    margin-bottom: 20px;
+}
+
+
+/* User Information Styles */
+#information-content .info-container .user-info {
+    background: #ffffff;
+    color: #111827;
+    border-radius: 12px;
+    padding: 25px 20px;
+    margin-bottom: 30px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+#information-content .info-container .user-info h3 {
+    color: #111827;
+    margin-bottom: 20px;
+}
+
+#information-content .info-container .user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+#information-content .info-container .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#information-content .info-container .detail-item label {
+    font-size: 12px;
+    opacity: 0.8;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#information-content .info-container .detail-item input,
+#information-content .info-container .detail-item span {
+    font-size: 16px;
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #111827;
+}
+
+#information-content .info-container .detail-item input:focus {
+    outline: none;
+    border-color: #9ca3af;
+    background: #ffffff;
+}
+
+#information-content .info-container .detail-item input[readonly] {
+    background: #f3f4f6;
+    cursor: not-allowed;
+}
+
+/* Statistics Grid */
+#information-content .info-container .stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+#information-content .info-container .stat-item {
+    text-align: left;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#information-content .info-container .stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+#information-content .info-container .stat-number {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+#information-content .info-container .stat-label {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* App Details */
+#information-content .info-container .app-details {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+#information-content .info-container .app-details .detail-item {
+    margin-bottom: 15px;
+}
+
+#information-content .info-container .app-details .detail-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Status Indicators */
+#information-content .info-container .status-active {
+    color: #10b981;
+    font-weight: 600;
+}
+
+#information-content .info-container .status-inactive {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Support Link */
+#information-content .info-container .support-link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+#information-content .info-container .support-link:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+#edit-info-btn, #change-password-btn {
+    background: #ff5a5f;
+    color: #ffffff;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #information-content .info-container {
+        padding: 15px;
+    }
+
+    #information-content .info-container .user-details {
+        gap: 15px;
+    }
+
+    #information-content .info-container .stats-grid {
+        gap: 15px;
+    }
+
+    #information-content .info-container .stat-item {
+        padding: 20px 15px;
+    }
+
+    #information-content .info-container .stat-number {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    #information-content .info-container .user-info {
+        padding: 20px;
+    }
+
+    #information-content .info-container .stats-grid {
+        flex-direction: column;
+    }
+
+    #information-content .info-container .stat-item {
+        padding: 15px 10px;
+    }
+
+    #information-content .info-container .stat-number {
+        font-size: 24px;
+    }
+}

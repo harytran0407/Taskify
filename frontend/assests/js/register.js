@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 // Registration successful
-                showError('Account created successfully! Redirecting to login...');
+                showError('Account created successfully! Ready to login...');
                 errorMessage.style.background = '#e8f5e8';
                 errorMessage.style.color = '#2e7d32';
                 errorMessage.style.borderLeftColor = '#2e7d32';

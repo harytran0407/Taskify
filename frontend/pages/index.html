@@ -43,8 +43,8 @@
             <div id="auth-section">
                 <div class="profile" id="profile-section" style="display: none;">
                     <img src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/588546170_1361983112261783_61586126430797922_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=YkwRyU54XhgQ7kNvwFxJ6mA&_nc_oc=AdqCWXtYjprEB739yFYtC5YxB-jiPo_wNHGpyEH9mSrahDDAPt6lQPJIcfqB6T2UJNs&_nc_zt=23&_nc_ht=scontent.fsgn5-11.fna&_nc_gid=_taEnPOQ8DB8AMKHN-Qt1w&_nc_ss=7a3a8&oh=00_Af3I41mIjrlJLMtvCpTJIANk2achUrE_mCgH6Feay81oiA&oe=69DEE0BC" alt="avatar">
-                    <h3></h3>
-                    <p></p>
+                    <h3 id="username"></h3>
+                    <p id="email"></p>
                 </div>
 
                 <div class="auth-buttons" id="auth-buttons">
@@ -54,12 +54,30 @@
             </div>
 
             <ul class="sidebar-menu">
-                <li class="active">Dashboard</li>
-                <li>Vital Task</li>
-                <li>My Task</li>
-                <li>Task Categories</li>
-                <li>Settings</li>
-                <li>Information</li>
+                <li class="active" data-tab="dashboard">
+                    <i class="uil uil-estate"></i> 
+                    Dashboard
+                </li>
+                <li data-tab="vital">
+                    <i class="uil uil-bolt"></i>
+                    Vital Task
+                </li>
+                <li data-tab="my-task">
+                    <i class="uil uil-clipboard-notes"></i> 
+                    My Task
+                </li>
+                <li data-tab="categories">
+                    <i class="uil uil-apps"></i> 
+                    Task Categories
+                </li>
+                <li data-tab="settings">
+                    <i class="uil uil-setting"></i> 
+                    Settings
+                </li>
+                <li data-tab="information">
+                    <i class="uil uil-user"></i> 
+                    User Information
+                </li>
             </ul>
 
             <div class="logout" id="logout-btn" style="display: none;">
@@ -69,22 +87,108 @@
         </div>
 
         <div class="wrapper">
-        <h1>Plan Your Day</h1>
-        <div class="task-input">
-            <img src="../assests/images/icon/bars-icon.svg" >
-            <input type="text" placeholder="Add a new task...">
-        
-        </div>
-        <div class="controls">
-            <div class="filters">
-                <span id="all" class="active">All</span>
-                <span id="pending">Pending</span>
-                <span id="completed">Completed</span>
+            <!-- Dashboard Tab Content -->
+            <div id="dashboard-content" class="tab-content active">
+                <h1>Plan Your Day</h1>
+                <div class="task-input">
+                    <img src="../assests/images/icon/bars-icon.svg" >
+                    <input type="text" placeholder="Add a new task...">
+                </div>
+                <div class="controls">
+                    <div class="filters">
+                        <span id="all" class="active">All</span>
+                        <span id="pending">Pending</span>
+                        <span id="completed">Completed</span>
+                    </div>
+                    <button class="clear-btn">Clear All</button>
+                </div>
+                <ul class="task-box"></ul>
             </div>
-            <button class="clear-btn">Clear All</button>
-        </div>
 
-        <ul class="task-box"></ul>
+            <!-- Vital Task Tab Content -->
+            <div id="vital-content" class="tab-content">
+                <h1>Vital Tasks</h1>
+                <p>Manage your most important tasks here.</p>
+                <div class="task-input">
+                    <img src="../assests/images/icon/bars-icon.svg" >
+                    <input type="text" placeholder="Add a vital task...">
+                </div>
+                <div class="controls">
+                    <div class="filters">
+                        <span id="vital-all" class="active">All</span>
+                        <span id="vital-pending">Pending</span>
+                        <span id="vital-completed">Completed</span>
+                    </div>
+                    <button class="clear-btn">Clear All</button>
+                </div>
+                <ul class="vital-task-box"></ul>
+            </div>
+
+            <!-- My Task Tab Content -->
+            <div id="my-task-content" class="tab-content">
+                <h1>My Tasks</h1>
+                <p>All your tasks in one place.</p>
+                <div class="task-input">
+                    <img src="../assests/images/icon/bars-icon.svg" >
+                    <input type="text" placeholder="Add a new task...">
+                </div>
+                <div class="controls">
+                    <div class="filters">
+                        <span id="my-all" class="active">All</span>
+                        <span id="my-pending">Pending</span>
+                        <span id="my-completed">Completed</span>
+                    </div>
+                    <button class="clear-btn">Clear All</button>
+                </div>
+                <ul class="my-task-box"></ul>
+            </div>
+
+            <!-- Task Categories Tab Content -->
+            <div id="categories-content" class="tab-content">
+                <h1>Task Categories</h1>
+                <p>Organize your tasks by categories.</p>
+                <div class="categories-container">
+                    <div class="category-item">
+                        <h3>Work</h3>
+                        <p>Professional tasks</p>
+                    </div>
+                    <div class="category-item">
+                        <h3>Personal</h3>
+                        <p>Personal tasks</p>
+                    </div>
+                    <div class="category-item">
+                        <h3>Health</h3>
+                        <p>Health and fitness tasks</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab Content -->
+            <div id="settings-content" class="tab-content">
+                <h1>Settings</h1>
+                <p>Configure your Taskify preferences.</p>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <label for="theme-select">Theme:</label>
+                        <select id="theme-select">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="notifications-toggle">Notifications:</label>
+                        <input type="checkbox" id="notifications-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="auto-save-toggle">Auto-save:</label>
+                        <input type="checkbox" id="auto-save-toggle" checked>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Tab Content -->
+            <div id="information-content" class="tab-content">
+            </div>
         </div>
     </div>
     <script type="module" src="../assests/js/main.js"></script>
