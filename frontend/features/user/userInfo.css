@@ -2,7 +2,6 @@
 /* Information Tab Styles */
 #information-content .info-container {
     padding: 10px;
-    
     max-width: 946px;
     margin: 0 auto;
     background: #ffffff;
@@ -49,10 +48,6 @@
     margin-bottom: 30px;
     border: 1px solid #e5e7eb;
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-}
-
-.user-info {
-    
 }
 
 #information-content .info-container .user-info h3 {

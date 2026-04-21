@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="../assests/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../features/dashboard/dashboard.css">
+    <link rel="stylesheet" href="../features/user/userInfo.css">
     <title>Taskify</title>
 </head>
 <body>
@@ -87,97 +89,11 @@
         </div>
 
         <div class="wrapper">
-            <!-- Dashboard Tab Content -->
-            <div id="dashboard-content" class="tab-content active">
-                
-            </div>
-
-            <!-- Vital Task Tab Content -->
-            <div id="vital-content" class="tab-content">
-                <h1>Vital Tasks</h1>
-                <p>Manage your most important tasks here.</p>
-                <div class="task-input">
-                    <img src="../assests/images/icon/bars-icon.svg" >
-                    <input type="text" placeholder="Add a vital task...">
-                </div>
-                <div class="controls">
-                    <div class="filters">
-                        <span id="vital-all" class="active">All</span>
-                        <span id="vital-pending">Pending</span>
-                        <span id="vital-completed">Completed</span>
-                    </div>
-                    <button class="clear-btn">Clear All</button>
-                </div>
-                <ul class="vital-task-box"></ul>
-            </div>
-
-            <!-- My Task Tab Content -->
-            <div id="my-task-content" class="tab-content">
-                <h1>My Tasks</h1>
-                <p>All your tasks in one place.</p>
-                <div class="task-input">
-                    <img src="../assests/images/icon/bars-icon.svg" >
-                    <input type="text" placeholder="Add a new task...">
-                </div>
-                <div class="controls">
-                    <div class="filters">
-                        <span id="my-all" class="active">All</span>
-                        <span id="my-pending">Pending</span>
-                        <span id="my-completed">Completed</span>
-                    </div>
-                    <button class="clear-btn">Clear All</button>
-                </div>
-                <ul class="my-task-box"></ul>
-            </div>
-
-            <!-- Task Categories Tab Content -->
-            <div id="categories-content" class="tab-content">
-                <h1>Task Categories</h1>
-                <p>Organize your tasks by categories.</p>
-                <div class="categories-container">
-                    <div class="category-item">
-                        <h3>Work</h3>
-                        <p>Professional tasks</p>
-                    </div>
-                    <div class="category-item">
-                        <h3>Personal</h3>
-                        <p>Personal tasks</p>
-                    </div>
-                    <div class="category-item">
-                        <h3>Health</h3>
-                        <p>Health and fitness tasks</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Settings Tab Content -->
-            <div id="settings-content" class="tab-content">
-                <h1>Settings</h1>
-                <p>Configure your Taskify preferences.</p>
-                <div class="settings-container">
-                    <div class="setting-item">
-                        <label for="theme-select">Theme:</label>
-                        <select id="theme-select">
-                            <option value="light">Light</option>
-                            <option value="dark">Dark</option>
-                        </select>
-                    </div>
-                    <div class="setting-item">
-                        <label for="notifications-toggle">Notifications:</label>
-                        <input type="checkbox" id="notifications-toggle" checked>
-                    </div>
-                    <div class="setting-item">
-                        <label for="auto-save-toggle">Auto-save:</label>
-                        <input type="checkbox" id="auto-save-toggle" checked>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Information Tab Content -->
-            <div id="information-content" class="tab-content">
+            <div id="app">
+                <h2>Loading...</h2>
             </div>
         </div>
     </div>
-    <script type="module" src="../assests/js/main.js"></script>
+    <script type="module" src="../main.js"></script>
 </body>
 </html>

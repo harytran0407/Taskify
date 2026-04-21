@@ -1,4 +1,3 @@
-import { initTodoApp } from './modules/todoController.js';
 
 // Check login status on page load
 export function setupAuthUI() {
@@ -24,7 +23,7 @@ export function setupAuthUI() {
         if (emailElement) emailElement.textContent = email;
 
         // Initialize todo app only for logged-in users
-        initTodoApp();
+        // initTodoApp();
     } else {
         // User is not logged in
         profileSection.style.display = 'none';

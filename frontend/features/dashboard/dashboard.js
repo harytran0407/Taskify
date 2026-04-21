@@ -1,7 +1,15 @@
 
+
+export function loadDashboardTab() {
+    const username = localStorage.getItem('username') || 'Guest';
+    
+
+    return `
+    
     <div class="dashboard-container">
         <header class="dashboard-header">
-            <h1>Welcome back, <span id="dashboard-username"></span> 👋</h1>            <div class="header-right">
+            <h1>Welcome back, <span id="dashboard-username">${username}</span> 👋</h1>            
+            <div class="dashboard-header-right">
                 <div class="avatar-group">
                     <img src="https://i.pravatar.cc/150?u=1" alt="user">
                     <img src="https://i.pravatar.cc/150?u=2" alt="user">
@@ -122,4 +130,8 @@
             </div>
         </div>
     </div>
+
+    `;
+}
+
 
