@@ -307,120 +307,17 @@ body{
     flex: 1;
     height: calc(100vh - 90px); /* 🔥 full chiều cao */
     overflow-y: auto; /* 🔥 scroll riêng */
-    max-width: 820px;
+    max-width: 970px;
     width: 100%;
     background: #fff;
     margin: 0;
-    padding: 28px 0 30px;
+    padding: 15px 0 30px;
     border-radius: 7px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    max-height: calc(100vh - 110px);
+    max-height: calc(100vh - 100px);
 }
 
-.wrapper h1{
-    font-size: 22px;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-    padding-bottom: 10px;
-}
 
-.task-input{
-    height: 52px;
-    padding:0 25px;
-    position: relative;
-}
-.task-input img{
-    position: absolute;
-    top: 50%;
-    transform: translate(17px,-50%);
-}
-.task-input input{
-    width: 100%;
-    height: 100%;
-    padding: 0 20px 0 53px;
-    border: 1px solid #999;
-    border-radius: 5px;
-    outline: none;
-    font-size: 18px;
-}
-
-.task-input input:focus, .task-input input.valid{
-    padding-left:52px;
-    border: 2px solid #1e293b;
-}
-
-.task-input input::placeholder{
-    color: #bfbfbf;
-    font-size: 18px;
-}
-
-.controls{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.controls {
-    border-bottom: 1px solid #ccc;
-    margin: 20px 0;
-    padding: 18px 25px;
-}
-
-.filters span{
-    color: #444;
-    margin: 0 8px;
-    font-size: 17px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.filters span:first-child{
-    margin-left: 0;
-}
-
-.filters span.active{
-    background-color: #1e293b;
-    color: #fff;
-    padding:8px;
-    border-radius: 5px;
-    transform: scale(1.05);
-}
-
-.controls .clear-btn{
-    border: none;
-    opacity: 0.6;
-    outline: none;
-    color: #fff;
-    border-radius: 4px;
-    background:#1e293b;
-    letter-spacing: 0.3px;
-    pointer-events: none;
-    transition: transform 0.2s ease;
-    font-size: 13px;
-    cursor: pointer;
-    padding: 7px 13px;
-}
-
-.clear-btn.active{
-    pointer-events: auto;
-    opacity: 1;
-}
-
-.clear-btn:active{
-    transform: scale(0.98);
-}
-
-.task-box{
-    padding: 0 20px 10px 25px;
-    margin-top:20px;
-    margin-right:5px;
-}
-
-.task-box.overflow{
-    height: 300px;
-    overflow-y: auto;
-}
 
     @media (max-width: 900px) {
         .page-container {

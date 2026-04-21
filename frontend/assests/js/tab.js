@@ -1,3 +1,4 @@
+import { loadDashboardTab } from './dashboard.js';
 import { loadInformationTab } from './information.js';
 
 // Tab switching functionality
@@ -17,7 +18,9 @@ export function setupTabSwitching() {
 
             // show selected tab
             const tabId = this.getAttribute('data-tab');
-            if (tabId === 'information') {
+            if (tabId === 'dashboard') {
+                loadDashboardTab();
+            } else if (tabId === 'information') {
                 loadInformationTab();
             }
             const activeTab = document.getElementById(`${tabId}-content`);

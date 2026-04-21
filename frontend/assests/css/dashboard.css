@@ -1,0 +1,217 @@
+
+
+/* Layout chung */
+.dashboard-container {
+    max-width: 946px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.dashboard-header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Nhóm Avatar */
+.avatar-group {
+    display: flex;
+}
+
+.avatar-group img, .avatar-more {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-left: -10px;
+    object-fit: cover;
+}
+
+.avatar-more {
+    background: #1e293b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+}
+
+.btn-invite {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #fecaca;
+    background: #fef2f2;
+    color: #ef4444;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Card & Box */
+.main-content {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 1.5rem;
+}
+
+.card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    border: 1px solid #f1f5f9;
+}
+
+.border-box {
+    border: 1px solid #f1f5f9;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    padding: 1.25rem;
+}
+
+/* Thành phần To-Do */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.title-todo {
+    color: #f87171;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.date-text {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.add-task-btn {
+    background: none;
+    border: none;
+    color: #f87171;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.task-body {
+    display: flex;
+    gap: 1rem;
+}
+
+.icon-status {
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+.task-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.task-info p {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.task-footer {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    display: flex;
+    gap: 1rem;
+}
+
+.task-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Sidebar (Status & Completed) */
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.status-charts {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.chart-item .label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-top: 0.5rem;
+}
+
+/* Ring Progress mô phỏng */
+.ring {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    background: radial-gradient(closest-side, white 80%, transparent 0),
+                conic-gradient(var(--color) calc(var(--percent) * 1%), #f1f5f9 0);
+}
+
+.mini-task {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.mini-info h4 { font-size: 0.9rem; }
+.mini-info p { font-size: 0.75rem; color: #64748b; }
+.mini-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.status-done {
+    color: #22c55e;
+    font-weight: 700;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+}
+
+.time-ago { font-size: 0.65rem; color: #94a3b8; }
+
+.mini-task img {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/* Màu chữ bổ trợ */
+.blue-text { color: #3b82f6; }
+.red-text { color: #ef4444; font-weight: 500; }
+
+/* Responsive cơ bản */
+@media (max-width: 992px) {
+    .main-content { grid-template-columns: 1fr; }
+}

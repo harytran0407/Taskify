@@ -4,6 +4,7 @@ import { initializeTabs, setupTabSwitching } from './tab.js';
 import {setupLogout} from './logout.js';
 import { setupAuthUI } from './auth.js';
 import { loadInformationTab } from './information.js';
+import { loadDashboardTab } from './dashboard.js';
 
 // chạy thời gian
 updateDateTime();
@@ -14,7 +15,8 @@ setupAuthUI();
 setupLogout();
 
 // Update information tab only when tab is selected
-loadInformationTab();
+loadDashboardTab();
+
 
 // Initialize tabs
 initializeTabs();
