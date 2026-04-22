@@ -1,5 +1,6 @@
 import { loadDashboardTab } from '../dashboard/dashboard.js';
 import { loadInformationTab } from '../user/userInfo.js';
+import { editInformationTab } from '../user/editUserInfo.js';
 
 export function loadTab(tab) {
     const app = document.getElementById("app");
@@ -10,6 +11,7 @@ export function loadTab(tab) {
 
     if (tab === "information") {
         app.innerHTML = loadInformationTab();
+        editInformationTab();
     }
 }
 

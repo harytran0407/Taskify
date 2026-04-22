@@ -1,4 +1,3 @@
-console.log("🚀 FILE LOADED");
 import {pool} from '../config/db.js';
 import sql from 'mssql';
 import bcrypt from 'bcrypt';

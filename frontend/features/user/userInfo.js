@@ -27,9 +27,12 @@ export function loadInformationTab() {
             </div>
 
             <div class="info-button">
-                <button id="edit-info-btn">Edit Information</button>
-                <button id="change-password-btn">Change Password</button>
+                <button id="edit-info-btn" class="btn">Edit Information</button>
+                <button id="save-info-btn" class="btn" style="display: none;">Save Changes</button>
+                <button id="cancel-edit-btn" class="btn" style="display: none;">Cancel</button>
+                <button id="change-password-btn" class="btn">Change Password</button>
             </div>
+            <div class="success-message" id="success-message" style="display: none;">Updated successfully!</div>
         </div>
     </div>
 
