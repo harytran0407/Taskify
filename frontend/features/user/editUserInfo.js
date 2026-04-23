@@ -6,6 +6,9 @@ export function editInformationTab() {
     const emailInput = document.getElementById('user-email');
     const contactInput = document.getElementById('user-contact');
     const successMessage = document.getElementById('success-message');
+    const changePasswordBtn = document.getElementById('change-password-btn'); // Thêm nút đổi mật khẩu
+ 
+
 
     // Khởi tạo object rỗng, sẽ được lấp đầy sau khi refreshUserInfo chạy
     let originalData = { username: '', email: '', contact: '' }; 
@@ -111,4 +114,14 @@ export function editInformationTab() {
         saveBtn.style.display = 'none';
         cancelBtn.style.display = 'none';
     });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            saveBtn.click();
+        }
+    });
+    
+
+
+
 }

@@ -1,8 +1,8 @@
 export function loadInformationTab() {
     const username = localStorage.getItem('username') || '-';
     const email = localStorage.getItem('email') || '-';
-    const joinedDate = localStorage.getItem('joinedDate') || 'Not available';
-    const contactNumber = localStorage.getItem('contactNumber') || '';
+    const joinedDate = localStorage.getItem('joinedDate') || '-';
+    const contactNumber = localStorage.getItem('contactNumber') || '-';
     return `
 <div id="information-content">
 <h1 id="info-header">Account Information</h1>
@@ -23,16 +23,17 @@ export function loadInformationTab() {
             </div>
             <div class="detail-item">
                 <label>Contact Number:</label>
-                <input type="text" id="user-contact" value="${contactNumber}" placeholder="Enter contact number" readonly>
+                <input type="text" id="user-contact" value="${contactNumber}" readonly>
             </div>
 
             <div class="info-button">
                 <button id="edit-info-btn" class="btn">Edit Information</button>
                 <button id="save-info-btn" class="btn" style="display: none;">Save Changes</button>
                 <button id="cancel-edit-btn" class="btn" style="display: none;">Cancel</button>
-                <button id="change-password-btn" class="btn">Change Password</button>
+                <button id="change-password-btn" data-tab="changePassword" class="btn">Change Password</button>
             </div>
             <div class="success-message" id="success-message" style="display: none;">Updated successfully!</div>
+            <div class="error-message" id="error-message" style="display: none;">Failed to update information.</div>
         </div>
     </div>
 

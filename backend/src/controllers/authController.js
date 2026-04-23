@@ -7,7 +7,33 @@ const SECRET = process.env.JWT_SECRET;
 
 
 export const register = async (req, res) => {
+  try {
     const { username,email, password } = req.body;
+    const checkUser = await pool.request()
+        .input('username', sql.NVarChar, username)
+        .input('email', sql.NVarChar, email)
+        .query(`
+            SELECT email, username FROM Users 
+            WHERE email = @email OR username = @username
+        `);
+
+    let emailExists = false;
+    let usernameExists = false;
+
+    checkUser.recordset.forEach(user => {
+        if (user.email === email) emailExists = true;
+        if (user.username === username) usernameExists = true;
+    });
+
+    if (emailExists) {
+        return res.status(400).json({ message: 'Email đã tồn tại' });
+    }
+
+    if (usernameExists) {
+       return res.status(400).json({ message: 'Username đã tồn tại' });
+    }
+
+    
     console.log('=== REGISTER REQUEST ===');
     console.log('Username:', username);
     console.log('Email:', email);
@@ -15,12 +41,27 @@ export const register = async (req, res) => {
     console.log('Body:', req.body);
     console.log('=======================');
     const hashedPassword = await bcrypt.hash(password, 10);
+    try {
     await pool.request()
         .input('username', sql.NVarChar, username)
         .input('email', sql.NVarChar, email)
         .input('password', sql.NVarChar, hashedPassword)
         .query('INSERT INTO Users (username, email, password) VALUES (@username, @email, @password)');
+    } catch (error) {
+        console.error('Database error during registration:', error);
+        if (error.number === 2627 || error.number === 2601) {
+            return res.status(400).json({
+                message: 'Email hoặc Username đã tồn tại'
+            });
+        }
+        throw error; // Rethrow nếu không phải lỗi trùng lặp
+    }
     res.status(201).json({ message: 'Đăng ký thành công' });
+  } catch (error) {
+    console.error('Register error:', error);
+    
+    res.status(500).json({ message: 'Lỗi server' });
+  }
 }
 console.log("👉 LOGIN FUNCTION START");
 export const login = async (req, res) => {

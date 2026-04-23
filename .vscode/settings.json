@@ -1,0 +1,4 @@
+{
+    "js/ts.updateImportsOnFileMove.enabled": "always",
+    "markdown.updateLinksOnFileMove.enabled": "always"
+}

@@ -61,6 +61,7 @@
 }
 
 #information-content .info-container .detail-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -72,6 +73,29 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+ #information-content .info-container i:not(.toggle-password):not(.toggle-confirm)  {
+    position: absolute;
+    left: 16px;
+    color: #b1b1b1;
+    font-size: 18px;
+    z-index: 1;
+}
+
+.toggle-password,
+.toggle-confirm {
+    position: absolute;
+    right: 16px;
+    bottom: 10px;
+    color: #b1b1b1;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+.toggle-password:hover,
+.toggle-confirm:hover {
+    color: #ff7f7f;
 }
 
 #information-content .info-container .detail-item input,
@@ -184,6 +208,13 @@ input:not([readonly]) {
 .success-message {
     margin-left: 10px;
     color: #10b981;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.error-message {
+    margin-left: 10px;
+    color: #ef4444;
     font-weight: 500;
     font-size: 12px;
 }

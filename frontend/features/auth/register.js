@@ -109,7 +109,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify({ username, email, password })
             });
 
-            const data = await response.json();
+            let data= {};
+            try {
+                data = await response.json();
+            } catch (jsonError) {
+                console.error('Error parsing JSON:', jsonError);
+                showError('Unexpected server response. Please try again.');
+                return;
+             }
 
             if (response.ok) {
                 // Registration successful
@@ -125,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Error:', error);
-            showError('Network error. Please check your connection and try again.');
+            showError(error.message || 'An error occurred. Please try again.');
         } finally {
             // Reset button
             submitBtn.innerHTML = '<span>Create Account</span><i class="uil uil-arrow-right"></i>';
