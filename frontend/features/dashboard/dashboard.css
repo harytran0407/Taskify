@@ -51,11 +51,16 @@
 .btn-invite {
     padding: 0.6rem 1.2rem;
     border: 1px solid #fecaca;
-    background: #fef2f2;
+    background: #fff;
     color: #ef4444;
     border-radius: 12px;
     cursor: pointer;
     font-weight: 600;
+}
+
+.btn-invite:hover {
+    background: #fef2f2;
+    
 }
 
 /* Card & Box */
@@ -70,6 +75,7 @@
     border-radius: 24px;
     padding: 1.5rem;
     border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .border-box {
@@ -89,13 +95,21 @@
 
 .title-todo {
     color: #f87171;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 500;
+    
+}
+.main-content i{
+    color: grey;
+    margin-right: 5px;
+    font-size: 1.2rem;
+
 }
 
-.date-text {
-    font-size: 0.85rem;
-    color: #94a3b8;
+.date-text #current-date , span.date-text {
+    font-size: 0.8rem;
+    color: #64748b;
+    padding-right: 0px;
 }
 
 .add-task-btn {
@@ -104,6 +118,21 @@
     color: #f87171;
     font-weight: 600;
     cursor: pointer;
+}
+
+.add-task-btn:hover {    
+    font-weight: 700;
+}
+
+.empty-task-message {
+    text-align: center;
+    color: #94a3b8;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.empty-task-message:hover {
+    color: #64748b;
 }
 
 .task-body {
@@ -211,7 +240,186 @@
 .blue-text { color: #3b82f6; }
 .red-text { color: #ef4444; font-weight: 500; }
 
-/* Responsive cơ bản */
-@media (max-width: 992px) {
-    .main-content { grid-template-columns: 1fr; }
+/* Modal Background */
+.modal {
+    display: none; /* JS sẽ chuyển thành flex khi mở */
+    position: fixed;
+    z-index: 9999; /* Đẩy lên cao nhất */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full chiều rộng trình duyệt */
+    height: 100vh; /* Full chiều cao trình duyệt */
+    background-color: rgba(0, 0, 0, 0.6); /* Nền tối hơn một chút cho rõ */
+    
+    /* Hai dòng này cực kỳ quan trọng để căn giữa */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #fff;
+    width: 90%; /* Responsive cho màn hình nhỏ */
+    max-width: 800px; /* Độ rộng tối đa như thiết kế */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Thêm đổ bóng cho đẹp */
+    margin: 40px auto; /* Căn giữa theo chiều dọc */
+    
+    
+}
+
+
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.model-body{
+    border: 9px solid #040404;
+}
+
+
+.modal-title { font-size: 15px; color: #333; position: relative; padding-bottom: 4px; font-weight: 600; }
+.modal-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80px;              /* độ dài thanh */
+    height: 2px;
+    background: #ff5a5f;      /* màu cam */
+    border-radius: 2px;
+}
+
+.btn-go-back {
+    background: none; border: none;
+    text-decoration: underline; cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-go-back:hover {
+    font-weight: 700;
+}
+
+/* Form Styles */
+.input-group { 
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column; 
+}
+.input-group label { margin-bottom: 5px; font-weight: 500; font-size: 14px; color: #202020; }
+.input-group input  {
+    padding: 10px;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+
+.flex-row { display: flex; gap: 20px; }
+.flex-1 { flex: 1; }
+
+.input-group textarea {
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    resize: vertical;
+}
+.upload-section label{margin-bottom: 5px; font-weight: 500; font-size: 14px; color: #202020;}
+.upload-box {
+    border: 1.5px dashed #ccc;
+    border-radius: 6px;
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    background: #f9f9f9;
+    color: #999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+.upload-box:hover {
+    background: #f1f1f1;
+    color: #666;
+}
+
+.upload-box i{
+    font-size: 28px;
+}
+.btn-done {
+    background-color: #ff5a5f;
+    color: white;
+    border: none;
+    padding: 8px 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400px;
+}
+
+.btn-done:hover {
+    background-color: #ff7f7f;
+}
+
+.priority-options { display: flex; gap: 50px; margin-top: 5px; margin-bottom: 15px; }
+.priority-group label { margin-bottom: 5px; font-weight: 500; font-size: 14px; color: #202020;}
+
+.dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.red { background: red; } 
+.blue { background: #3b82f6; } 
+.green { background: #22c55e; }
+
+.priority-options input[type="radio"] {
+    margin-left: 5px;
+    display: none;
+}
+
+/* Tạo hình vuông giả */
+.square-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 4px; /* Hình vuông hơi bo góc cho đẹp */
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.custom-radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* Khi Radio được chọn: Đổi màu viền và thêm dấu tích hoặc màu nền */
+.custom-radio input[type="radio"]:checked + .square-box {
+    border-color: #ff5a5f;
+    background-color: #ff5a5f;
+}
+
+/* Tạo dấu tích trắng bên trong khi được chọn (tùy chọn) */
+.custom-radio input[type="radio"]:checked + .square-box::after {
+    content: "\f00c"; /* Mã icon check của FontAwesome */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: white;
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

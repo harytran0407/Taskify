@@ -11,6 +11,6 @@ export function updateDateTime() {
         weekday: "long"
     });
 
-    document.getElementById("current-date").innerText = date;
-    document.getElementById("current-day").innerText = weekday;
+    document.querySelectorAll("#current-date").forEach(el => el.innerText = date);
+    document.querySelectorAll("#current-day").forEach(el => el.innerText = weekday);
 }

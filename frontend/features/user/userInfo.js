@@ -1,45 +1,127 @@
-export function loadInformationTab() {
-    const username = localStorage.getItem('username') || '-';
-    const email = localStorage.getItem('email') || '-';
-    const joinedDate = localStorage.getItem('joinedDate') || '-';
-    const contactNumber = localStorage.getItem('contactNumber') || '-';
-    return `
-<div id="information-content">
-<h1 id="info-header">Account Information</h1>
-<div class="info-container">
-    <div class="info-section user-info">
-        <div class="user-details">
-            <div class="detail-item">
-                <label>Username:</label>
-                <input type="text" id="user-username" value="${username}" readonly>
-            </div>
-            <div class="detail-item">
-                <label>Email:</label>
-                <input type="text" id="user-email" value="${email}" readonly>
-            </div>
-            <div class="detail-item">
-                <label>Member Since:</label>
-                <span id="user-joined">${joinedDate}</span>
-            </div>
-            <div class="detail-item">
-                <label>Contact Number:</label>
-                <input type="text" id="user-contact" value="${contactNumber}" readonly>
-            </div>
+export function editInformationTab() {
+    const editBtn = document.getElementById('edit-info-btn');
+    const saveBtn = document.getElementById('save-info-btn');
+    const cancelBtn = document.getElementById('cancel-edit-btn');
+    const usernameInput = document.getElementById('user-username');
+    const emailInput = document.getElementById('user-email');
+    const contactInput = document.getElementById('user-contact');
+    const successMessage = document.getElementById('success-message');
+    const changePasswordBtn = document.getElementById('change-password-btn'); // Thêm nút đổi mật khẩu
+ 
 
-            <div class="info-button">
-                <button id="edit-info-btn" class="btn">Edit Information</button>
-                <button id="save-info-btn" class="btn" style="display: none;">Save Changes</button>
-                <button id="cancel-edit-btn" class="btn" style="display: none;">Cancel</button>
-                <button id="change-password-btn" data-tab="changePassword" class="btn">Change Password</button>
-            </div>
-            <div class="success-message" id="success-message" style="display: none;">Updated successfully!</div>
-            <div class="error-message" id="error-message" style="display: none;">Failed to update information.</div>
-        </div>
-    </div>
 
+    // Khởi tạo object rỗng, sẽ được lấp đầy sau khi refreshUserInfo chạy
+    let originalData = { username: '', email: '', contact: '' }; 
+
+    const refreshUserInfo = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/users/info', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            const data = await response.json();
+            
+            if (response.ok) {
+                // Cập nhật giá trị vào ô Input
+                usernameInput.value = data.username || '';
+                emailInput.value = data.email || '';
+                contactInput.value = data.contactNumber || '';
+                
+                // QUAN TRỌNG: Cập nhật lại originalData sau khi fetch thành công
+                originalData = {
+                    username: data.username,
+                    email: data.email,
+                    contact: data.contactNumber
+                };
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    };
+
+    // Gọi lần đầu khi load tab
+    refreshUserInfo();
+
+    editBtn.addEventListener('click', () => {
+        usernameInput.removeAttribute('readonly');
+        emailInput.removeAttribute('readonly');
+        contactInput.removeAttribute('readonly');
+        editBtn.style.display = 'none';
+        saveBtn.style.display = 'inline-block';
+        cancelBtn.style.display = 'inline-block';
+    });
+
+    saveBtn.addEventListener('click', async () => {
+        try {
+            const username = usernameInput.value.trim();
+            const email = emailInput.value.trim();
+            const contactNumber = contactInput.value.trim();
+
+            const response = await fetch('http://localhost:3000/api/users/update', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ username, email, contactNumber })
+            });
+
+            if (response.ok) {
+                // 1. Cập nhật localStorage
+                localStorage.setItem('username', username);
+                localStorage.setItem('email', email);
+                localStorage.setItem('contactNumber', contactNumber);
+
+                // 2. Cập nhật UI trực tiếp và biến tạm (KHÔNG CẦN CHỜ FETCH LẠI)
+                originalData = { username, email, contact: contactNumber };
+                
+                // 3. Khóa các ô input
+                usernameInput.setAttribute('readonly', true);
+                emailInput.setAttribute('readonly', true);  
+                contactInput.setAttribute('readonly', true);
+                
+                // 4. Đổi trạng thái nút
+                editBtn.style.display = 'inline-block';
+                saveBtn.style.display = 'none';
+                cancelBtn.style.display = 'none';
+
+                // 5. Thông báo thành công
+                successMessage.style.display = 'block';
+                setTimeout(() => { successMessage.style.display = 'none'; }, 3000);
+
+                // Gọi ngầm để đảm bảo dữ liệu server chuẩn (tùy chọn)
+                refreshUserInfo(); 
+            } else {
+                const data = await response.json();
+                alert(data.message || 'Update failed');
+            }
+        } catch (error) {
+            alert('An error occurred');
+        }
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        // Trả về đúng dữ liệu gốc đã lưu
+        usernameInput.value = originalData.username;
+        emailInput.value = originalData.email;
+        contactInput.value = originalData.contact;
+        
+        usernameInput.setAttribute('readonly', true);
+        emailInput.setAttribute('readonly', true);  
+        contactInput.setAttribute('readonly', true);
+        editBtn.style.display = 'inline-block';
+        saveBtn.style.display = 'none';
+        cancelBtn.style.display = 'none';
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            saveBtn.click();
+        }
+    });
     
-    
-</div>
-</div>
-    `;
+
+
+
 }

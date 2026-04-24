@@ -1,6 +1,6 @@
 
 import { updateDateTime } from './features/utils/dateUtils.js';
-import { setupTabSwitching, loadTab } from './features/tabs/tab.js';
+import { setupTabSwitching, loadTab } from './features/tabs/tabController.js';
 import { setupLogout } from './features/auth/logout.js';
 import { setupAuthUI } from './features/auth/auth.js';
 

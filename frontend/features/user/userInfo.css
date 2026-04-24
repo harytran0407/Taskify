@@ -19,16 +19,15 @@
 
     /* 👇 để dùng pseudo-element */
     position: relative;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
 }
 #info-header::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: 0;
-
-    width: 120px;              /* độ dài thanh */
-    height: 3px;
+    width: 180px;              /* độ dài thanh */
+    height: 2px;
     background: #ff5a5f;      /* màu cam */
     border-radius: 2px;
 }
