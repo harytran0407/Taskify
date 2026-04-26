@@ -1,4 +1,5 @@
 import { loadDashboardTab} from '../dashboard/loadDashboard.js';
+import { loadTasks } from '../tasks/loadTask.js';
 import { setupModal } from '../dashboard/dashboard.js';
 import { setupAddTask } from '../tasks/addTask.js';
 import { loadInformationTab } from '../user/loadUserInfo.js';
@@ -12,6 +13,7 @@ export function loadTab(tab) {
 
     if (tab === "dashboard") {
         app.innerHTML = loadDashboardTab();
+        loadTasks();
         setupModal();
         setupAddTask();
     } 

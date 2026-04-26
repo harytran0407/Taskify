@@ -28,11 +28,11 @@ export function loadDashboardTab() {
                     <button class="add-task-btn">+ Add task</button>
                 </div>
 
-                <div id="task-list-container">
+                <div id="taskList" class="task-list"></div>
                     <p class="empty-task-message">
                         No tasks available. Click + Add task to start!
                     </p>
-                </div>
+                
             </section>
 
             <div class="sidebar-content">
@@ -63,7 +63,7 @@ export function loadDashboardTab() {
         </div>
     </div>
 
-    <div id="toast-container"></div>
+    
     
     <div id="addTaskModal" class="modal">
         <div class="modal-content">
@@ -129,5 +129,7 @@ export function loadDashboardTab() {
 
         </div>
     </div>
+
+    
     `;
 }
