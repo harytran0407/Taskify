@@ -1,21 +1,23 @@
 export function openTaskModal() {
-    const addTaskBtn = document.querySelector('.add-task-btn');
-    const emptyMessage = document.querySelector('.empty-task-message');
     const modal = document.getElementById('addTaskModal');
     const closeModalBtn = document.getElementById('closeModal');
 
-    addTaskBtn.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
+    if (!modal) return;
 
-    emptyMessage.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
+    // mở modal (gộp nhiều trigger)
+    document.querySelectorAll('.add-task-btn, .empty-task-message')
+        .forEach(el => {
+            el.addEventListener('click', () => {
+                modal.style.display = 'flex';
+            });
+        });
 
+    // đóng modal
     closeModalBtn.addEventListener('click', () => {
         modal.style.display = 'none';
     });
 
+    // click ra ngoài
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             modal.style.display = 'none';

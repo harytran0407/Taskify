@@ -204,19 +204,6 @@ input:not([readonly]) {
     color: #111827;
 }
 
-.success-message {
-    margin-left: 10px;
-    color: #10b981;
-    font-weight: 500;
-    font-size: 12px;
-}
-
-.error-message {
-    margin-left: 10px;
-    color: #ef4444;
-    font-weight: 500;
-    font-size: 12px;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {

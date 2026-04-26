@@ -62,6 +62,8 @@ export function loadDashboardTab() {
             </div>
         </div>
     </div>
+
+    <div id="toast-container"></div>
     
     <div id="addTaskModal" class="modal">
         <div class="modal-content">
@@ -73,14 +75,13 @@ export function loadDashboardTab() {
             <div class="modal-body">
                 <div class="input-group">
                     <label>Title</label>
-                    <input type="text" id="taskTitle" placeholder="Enter task title...">
+                    <input type="text" id="taskTitle" placeholder="Enter task title..." required>
                 </div>
 
                 <div class="input-group">
                     <label>Date</label>
                     <div class="date-input-wrapper">
-                        <input type="text" id="taskDate" placeholder="DD/MM/YYYY">
-                        <i class="fa-regular fa-calendar"></i>
+                        <input type="date" id="taskDate" placeholder="DD/MM/YYYY" required>
                     </div>
                 </div>
 
@@ -123,6 +124,9 @@ export function loadDashboardTab() {
             <div class="modal-footer">
                 <button class="btn" id="saveTaskBtn">Done</button>
             </div>
+            <div id="task-error-message" class="error-message"></div>
+            <div id="task-success-message" class="success-message"></div>
+
         </div>
     </div>
     `;

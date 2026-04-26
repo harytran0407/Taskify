@@ -1,4 +1,4 @@
- import { loadTab } from '../tabs/tabController.js';
+import { loadTab } from '../tabs/tabController.js';
 export function setupChangePassword() {
         const currentPasswordInput = document.getElementById('current-password'); // Thêm input mật khẩu hiện tại
         const newPasswordInput = document.getElementById('new-password'); // Thêm input mật khẩu mới

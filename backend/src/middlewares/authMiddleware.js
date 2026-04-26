@@ -5,21 +5,21 @@ dotenv.config();
 const SECRET = process.env.JWT_SECRET;
 
 export const authMiddleware = (req, res, next) => {
-    console.log('🔥 AUTH MIDDLEWARE HIT');
-    console.log('AUTH HEADER:', req.headers.authorization);
+    //console.log('🔥 AUTH MIDDLEWARE HIT');
+    //console.log('AUTH HEADER:', req.headers.authorization);
 
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        console.log('❌ NO AUTH HEADER');
+        //console.log('❌ NO AUTH HEADER');
         return res.status(401).json({ message: 'No auth header' });
     }
 
     const token = authHeader.split(' ')[1];
-    console.log('TOKEN:', token);
+    //console.log('TOKEN:', token);
 
     if (!token) {
-        console.log('❌ NO TOKEN AFTER SPLIT');
+        //console.log('❌ NO TOKEN AFTER SPLIT');
         return res.status(401).json({ message: 'No token' });
     }
 
