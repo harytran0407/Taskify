@@ -1,5 +1,5 @@
 
-
+@import '../../components/variable.css';
 /* Layout chung */
 .dashboard-container {
     max-width: 1100px;
@@ -110,7 +110,11 @@
     align-items: center;
     margin-bottom: 1.5rem;
 }
-
+.card-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
 .title-todo {
     color: #f87171;
     font-size: 17px;
@@ -153,41 +157,213 @@
     color: #64748b;
 }
 
-.task-body {
+/* ================= TASK CARD ================= */
+.task-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: all 0.2s ease;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* ================= ROW LAYOUT ================= */
+.task-row {
     display: flex;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 12px;
 }
 
-.icon-status {
-    font-size: 1.2rem;
-    margin-top: 3px;
+/* ================= LEFT: CIRCLE ================= */
+.status-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.task-info h3 {
+/* icon mặc định ẩn */
+.status-circle .check-icon {
+    font-size: 12px;
+    color: white;
+    display: none;
+}
+
+/* khi được chọn */
+.status-circle.selected {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* hiện dấu tick */
+.status-circle.selected .check-icon {
+    display: block;
+    margin: 0;
+}
+/* màu theo priority */
+.priority-high { border-color: #ef4444; }
+.priority-medium { border-color: #3b82f6; }
+.priority-low { border-color: #22c55e; }
+
+/* khi selected → hiện dot */
+.status-circle.selected::after {
+    background: currentColor;
+}
+
+/* ================= CENTER: CONTENT ================= */
+.task-content {
+    flex: 1;
+}
+
+.task-content h3 {
     font-size: 15px;
     font-weight: 600;
-    color: var(--text-main);
+    color: #0f172a;
+    margin-bottom: 4px;
 }
 
-.task-info p {
+.task-content p {
     font-size: 13px;
-    color: var(--text-sub);
+    color: #64748b;
+    line-height: 1.4;
+    margin-bottom: 8px;
 }
 
-.task-footer {
-    margin-top: 1rem;
-    font-size: 0.75rem;
-    color: #94a3b8;
+/* footer info */
+.task-meta {
     display: flex;
-    gap: 1rem;
+    gap: 12px;
+    font-size: 12px;
+    color: #94a3b8;
 }
 
-.task-img {
-    width: 90px;
-    height: 90px;
-    border-radius: 12px;
+.task-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ================= RIGHT: IMAGE + MENU ================= */
+.task-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+/* ảnh */
+.task-right img {
+    width: 75px;
+    height: 55px;
+    border-radius: 10px;
     object-fit: cover;
 }
+
+/* ================= MENU ================= */
+.menu {
+    position: relative;
+}
+
+.menu-btn {
+    font-size: 18px;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.menu-btn:hover {
+    background: #f1f5f9;
+}
+
+/* dropdown */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 24px;
+    right: 0;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    overflow: hidden;
+    min-width: 120px;
+    z-index: 10;
+}
+
+.dropdown div {
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.dropdown div:hover {
+    background: #f8fafc;
+}
+
+/* ================= TEXT COLOR ================= */
+.red-text { color: #ef4444; font-weight: 500; }
+.blue-text { color: #3b82f6; font-weight: 500; }
+.green-text { color: #22c55e; font-weight: 500; }
+
+.bulk-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    border-radius: 10px;   
+
+}
+
+.bulk-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.bulk-actions i {
+    font-size: 18px;
+    color: #fff;
+    margin: 0px;
+}
+
+.btn-complete {
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-complete:hover {
+    background: #16a34a;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+}
+
 
 /* Sidebar (Status & Completed) */
 .sidebar-content {

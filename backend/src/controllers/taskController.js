@@ -70,3 +70,19 @@ export const deleteTask = async (req, res) => {
 
     res.json({ message: 'Task deleted' });
 };
+
+export const markComplete = async (req, res) => {
+    const userId = req.id;
+    const { id: taskId } = req.params;
+
+    await pool.request()
+        .input('userId', sql.Int, userId)
+        .input('taskId', sql.Int, taskId)
+        .query(`
+            UPDATE Tasks 
+            SET status = 'completed' 
+            WHERE id = @taskId AND user_id = @userId
+        `);
+
+    res.json({ message: 'Task marked as complete' });
+};

@@ -25,9 +25,24 @@ export function loadDashboardTab() {
                         <h2 class="title-todo"><i class="fa-regular fa-clipboard"></i> To-Do</h2>
                         <span class="date-text"><span id="current-date"></span> • Today</span>
                     </div>
-                    <button class="add-task-btn">+ Add task</button>
+                    <div class="card-header-right">
+                        <div id="bulkActions" class="bulk-actions" style="display: none;">
+  
+                            <div class="bulk-buttons">
+                                <button id="completeBtn" class="btn-complete">
+                                <i class="fa-solid fa-check"></i>
+                                </button>
+                                <button id="deleteBtn" class="btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="add-task-btn">+ Add task</button>
+                    </div>
+                    
                 </div>
 
+                <!-- Task List -->
                 <div id="taskList" class="task-list"></div>
                     <p class="empty-task-message">
                         No tasks available. Click + Add task to start!
@@ -56,8 +71,7 @@ export function loadDashboardTab() {
 
                 <section class="completed-section card">
                     <h2 class="title-todo"><i class="fa-regular fa-square-check"></i> Completed Task</h2>
-                    <div id="completed-list-container" class="completed-list">
-                        </div>
+                    <div id="completedTaskList" class="completed-list"></div>                
                 </section>
             </div>
         </div>
