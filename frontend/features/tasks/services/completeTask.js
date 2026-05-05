@@ -1,4 +1,4 @@
-import { showToast } from '../../components/toast.js';
+import { showToast } from '../../../components/toast.js';
 export async function markTaskComplete(id) {
     try {
         const response = await fetch(`http://localhost:3000/api/tasks/${id}/complete`, {

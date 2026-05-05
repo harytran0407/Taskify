@@ -1,7 +1,7 @@
 import { loadDashboardTab} from '../dashboard/loadDashboard.js';
 import { loadTasks } from '../tasks/loadTask.js';
 import { setupModal } from '../dashboard/dashboard.js';
-import { setupAddTask } from '../tasks/addTask.js';
+import { setupAddTask } from '../tasks/services/addTask.js';
 import { loadInformationTab } from '../user/loadUserInfo.js';
 import { editInformationTab } from '../user/userInfo.js';
 import { loadChangePasswordTab } from '../user/changePassword.js';

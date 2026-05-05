@@ -1,4 +1,4 @@
-import {openTaskModal} from '../tasks/openTaskModel.js';
+import {openTaskModal} from '../tasks/ui/openTaskModal.js';
 
 export function setupModal() {
     openTaskModal();

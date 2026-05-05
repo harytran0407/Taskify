@@ -1,4 +1,4 @@
-import { showToast } from '../../components/toast.js';
+import { showToast } from '../../../components/toast.js';
 export function setupAddTask() {
     const saveTaskBtn = document.getElementById('saveTaskBtn');
     const taskTitleInput = document.getElementById('taskTitle');
