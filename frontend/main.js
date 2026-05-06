@@ -1,20 +1,33 @@
-
+// ==============================
+// IMPORT CORE FEATURES
+// ==============================
 import { updateDateTime } from './features/utils/dateUtils.js';
 import { setupTabSwitching, loadTab } from './features/tabs/tabController.js';
 import { setupLogout } from './features/auth/logout.js';
 import { setupAuthUI } from './features/auth/auth.js';
 
 
-// chạy thời gian
+// ==============================
+// CLOCK (REALTIME)
+// ==============================
 updateDateTime();
 setInterval(updateDateTime, 1000);
 
-// Setup UI và logout
+
+// ==============================
+// AUTH SYSTEM
+// ==============================
 setupAuthUI();
 setupLogout();
 
-// Setup tabs
+
+// ==============================
+// TAB SYSTEM
+// ==============================
 setupTabSwitching();
 
-// Load tab mặc định
+
+// ==============================
+// DEFAULT TAB
+// ==============================
 loadTab('dashboard');

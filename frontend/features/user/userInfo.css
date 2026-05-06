@@ -1,10 +1,8 @@
 /* Information Tab Styles */
 #information-content .info-container {
-    padding: 10px;
-    max-width: 946px;
+    max-width: 1100px;
     margin: 0 auto;
-    background: #ffffff;
-    color: #111827;
+    padding: 10px 20px 30px;
 }
 
 #info-header  {
@@ -20,6 +18,7 @@
     /* 👇 để dùng pseudo-element */
     position: relative;
     padding-bottom: 4px;
+    
 }
 #info-header::after {
     content: "";

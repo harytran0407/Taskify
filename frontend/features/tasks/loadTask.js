@@ -1,31 +1,31 @@
 import { getTasks } from './services/getTask.js';
 import { deleteTask } from './services/deleteTask.js';
+import { updateTask } from './services/editTask.js';
 import { markTaskComplete } from './services/completeTask.js';
-
 import { renderTasks } from './ui/taskRender.js';
 import { updateBulkActions } from './ui/bulkActions.js';
-
 import { splitTasks } from './utils/taskUtils.js';
-
+import { editTaskModal } from './ui/openModal.js';
 import {
     toggleTask,
     clearSelection,
     getSelectedTasks,
     getSelectedSet
 } from './state/taskState.js';
-
+let taskEdit=[];
 /* ================= MAIN ================= */
 export async function loadTasks() {
     const taskList = document.getElementById('taskList');
     const completedList = document.getElementById('completedTaskList');
     const emptyMessage = document.querySelector('.empty-task-message');
+    
 
     try {
         const res = await getTasks();
         const tasks = Array.isArray(res) ? res : (res.tasks || res.data || []);
+        taskEdit = tasks;
 
         const { active, completed } = splitTasks(tasks);
-        const selected = getSelectedSet();
 
         // ===== ACTIVE TASKS =====
         if (active.length === 0) {
@@ -81,14 +81,28 @@ if (!isBound) {
             return;
         }
 
-        /* ===== DELETE SINGLE ===== */
-        if (e.target.classList.contains('delete-task')) {
+        /* ===== DELETE SINGLE ===== */        
+        const deleteBtn = e.target.classList.contains('delete-task');
+
+        if (deleteBtn) {
             const id = e.target.dataset.id;
 
             if (!confirm('Delete task?')) return;
 
             await deleteTask(id);
             loadTasks();
+            return;
+        }
+
+        /* ===== EDIT SINGLE ===== */
+        const editBtn = e.target.closest('.edit-task');
+
+        if (editBtn) {
+            const id = editBtn.dataset.id;
+
+            const task = taskEdit.find(t => t.id == id);
+            if (!task) return;
+            editTaskModal(task);
             return;
         }
 
@@ -133,3 +147,4 @@ if (!isBound) {
 
 /* ================= AUTO RELOAD ================= */
 window.addEventListener('taskAdded', loadTasks);
+window.addEventListener('taskUpdated', loadTasks);

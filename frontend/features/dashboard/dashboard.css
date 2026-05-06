@@ -315,7 +315,7 @@
 }
 
 
-.modal-title { font-size: 15px; color: #333; position: relative; padding-bottom: 4px; font-weight: 600; }
+.modal-title { font-size: 17px; color: #333; position: relative; padding-bottom: 4px; font-weight: 600; }
 .modal-title::after {
     content: "";
     position: absolute;
@@ -364,6 +364,8 @@
     outline: none;
     resize: vertical;
 }
+
+
 .upload-section label{margin-bottom: 5px; font-weight: 500; font-size: 14px; color: #202020;}
 .upload-box {
     border: 1.5px dashed #ccc;

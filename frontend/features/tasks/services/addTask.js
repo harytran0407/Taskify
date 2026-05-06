@@ -1,6 +1,7 @@
 import { showToast } from '../../../components/toast.js';
 export function setupAddTask() {
     const saveTaskBtn = document.getElementById('saveTaskBtn');
+    const modal = document.getElementById('addTaskModal');
     const taskTitleInput = document.getElementById('taskTitle');
     const taskDescriptionInput = document.getElementById('taskDesc');
     const taskDueDateInput = document.getElementById('taskDate');
@@ -9,15 +10,18 @@ export function setupAddTask() {
     saveTaskBtn.addEventListener('click', async (e) => {
         e.preventDefault();
 
+        if (modal.dataset.mode !== 'add') return;
+        console.log('ADD MODE');
+
         const title = taskTitleInput.value.trim();
         const description = taskDescriptionInput.value.trim();
         const dueDate = taskDueDateInput.value;
 
-        // 👉 lấy priority TẠI THỜI ĐIỂM CLICK
+        // lấy priority TẠI THỜI ĐIỂM CLICK
         const priorityInput = document.querySelector('input[name="priority"]:checked');
         const priority = priorityInput ? priorityInput.value : 'low';
 
-        // ✅ validate
+        // validate
         if (!title || !dueDate) {
             taskErrorMessage.textContent = 'Vui lòng điền vào tất cả các trường bắt buộc.';
             taskErrorMessage.style.display = 'block';
@@ -49,7 +53,7 @@ export function setupAddTask() {
             }
         } catch (error) {
             console.error('Fetch error:', error);
-            taskErrorMessage.textContent = 'Bị lỗi khi thêm công việc.';
+            taskErrorMessage.textContent = 'Bị lỗi khi tạo task.';
             taskErrorMessage.style.display = 'block';
         }
     });

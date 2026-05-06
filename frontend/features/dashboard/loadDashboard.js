@@ -82,7 +82,7 @@ export function loadDashboardTab() {
     <div id="addTaskModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">Add New Task</h2>
+                <h2 class="modal-title" id="modalTitle" >Add New Task</h2>
                 <button class="btn-go-back" id="closeModal">Go Back</button>
             </div>
             
@@ -136,7 +136,7 @@ export function loadDashboardTab() {
             </div>
 
             <div class="modal-footer">
-                <button class="btn" id="saveTaskBtn">Done</button>
+                <button class="btn" id="saveTaskBtn">Add Task</button>
             </div>
             <div id="task-error-message" class="error-message"></div>
             <div id="task-success-message" class="success-message"></div>
