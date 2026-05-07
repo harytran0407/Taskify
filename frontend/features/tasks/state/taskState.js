@@ -31,3 +31,10 @@ export function isSelected(id) {
 export function getSelectedCount() {
     return state.selected.size;
 }
+
+export function selectAllTasks(tasks){
+    tasks.forEach(task => {
+        state.selected.add(String(task.id));
+    });
+}
+

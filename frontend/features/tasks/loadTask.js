@@ -1,17 +1,16 @@
 import { getTasks } from './services/getTask.js';
 import { deleteTask } from './services/deleteTask.js';
-import { updateTask } from './services/editTask.js';
-import { markTaskComplete } from './services/completeTask.js';
 import { renderTasks } from './ui/taskRender.js';
-import { updateBulkActions } from './ui/bulkActions.js';
+import { updateBulkActions } from './ui/bulk/bulkActions.js';
 import { splitTasks } from './utils/taskUtils.js';
-import { editTaskModal } from './ui/openModal.js';
+import { editTaskModal } from './ui/modal/openModal.js';
+import { toggleTask, getSelectedSet } from './state/taskState.js';
 import {
-    toggleTask,
-    clearSelection,
-    getSelectedTasks,
-    getSelectedSet
-} from './state/taskState.js';
+    handleSelectTask,
+    handleSelectAll,
+    handleBulkDelete,
+    handleBulkComplete
+} from './ui/bulk/bulkHandlers.js';
 let taskEdit=[];
 /* ================= MAIN ================= */
 export async function loadTasks() {
@@ -54,20 +53,7 @@ let isBound = false;
 if (!isBound) {
     document.addEventListener('click', async (e) => {
 
-        /* ===== SELECT TASK ===== */
-        const circle = e.target.closest('.status-circle');
-        if (circle) {
-            const id = circle.dataset.id;
-
-            toggleTask(id);
-
-            // update UI ngay lập tức
-            const isSelected = getSelectedSet().has(id);
-            circle.classList.toggle('selected', isSelected);
-
-            updateBulkActions();
-            return;
-        }
+        
 
         /* ===== MENU TOGGLE ===== */
         if (e.target.classList.contains('menu-btn')) {
@@ -81,7 +67,7 @@ if (!isBound) {
             return;
         }
 
-        /* ===== DELETE SINGLE ===== */        
+        /* ===== DELETE MENU ===== */        
         const deleteBtn = e.target.classList.contains('delete-task');
 
         if (deleteBtn) {
@@ -94,7 +80,7 @@ if (!isBound) {
             return;
         }
 
-        /* ===== EDIT SINGLE ===== */
+        /* ===== EDIT MENU ===== */
         const editBtn = e.target.closest('.edit-task');
 
         if (editBtn) {
@@ -111,32 +97,28 @@ if (!isBound) {
             document.querySelectorAll('.dropdown').forEach(m => m.style.display = 'none');
         }
 
+        /* ===== SELECT TASK ===== */
+        const circle = e.target.closest('.status-circle');
+        if (circle) {
+            handleSelectTask(circle, taskEdit);
+            return;
+        }
+
+        /* ==== SELECT ALL ==== */
+        if (e.target.closest('#selectAllBtn')){
+            handleSelectAll(taskEdit);
+            return;
+        }
+
         /* ===== BULK DELETE ===== */
         if (e.target.closest('#deleteBtn')) {
-            const ids = getSelectedTasks();
-
-            if (ids.length === 0) return;
-            if (!confirm(`Delete ${ids.length} tasks?`)) return;
-
-            await Promise.all(ids.map(id => deleteTask(Number(id))));
-
-            clearSelection();
-            updateBulkActions();
-            loadTasks();
+            await handleBulkDelete(loadTasks);
             return;
         }
 
         /* ===== BULK COMPLETE ===== */
         if (e.target.closest('#completeBtn')) {
-            const ids = getSelectedTasks();
-
-            if (ids.length === 0) return;
-
-            await Promise.all(ids.map(id => markTaskComplete(Number(id))));
-
-            clearSelection();
-            updateBulkActions();
-            loadTasks();
+            await handleBulkComplete(loadTasks);
             return;
         }
 

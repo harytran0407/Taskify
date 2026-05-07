@@ -27,21 +27,24 @@ export function loadDashboardTab() {
                     </div>
                     <div class="card-header-right">
                         <div id="bulkActions" class="bulk-actions" style="display: none;">
-  
-                            <div class="bulk-buttons">
-                                <button id="completeBtn" class="btn-complete">
-                                <i class="fa-solid fa-check"></i>
-                                </button>
-                                <button id="deleteBtn" class="btn-delete">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
+                            
+                            <div class="bulk-buttons">                                
+                                <button id="completeBtn" class="btn-complete">Complete</button>
+                                <button id="deleteBtn" class="btn-delete">Delete</button>
+                                <button id="selectAllBtn" class="btn-selectAll">Select All</button>
                             </div>
+
+                            
+
+                            
                         </div>
                         <button class="add-task-btn">+ Add task</button>
+                        
                     </div>
                     
+                    
                 </div>
-
+                <span class="selected-count"></span>
                 <!-- Task List -->
                 <div id="taskList" class="task-list"></div>
                     <p class="empty-task-message">

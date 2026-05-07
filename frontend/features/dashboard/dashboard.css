@@ -163,7 +163,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;    
-    border-radius: 10px;   
+    padding-top: 0px;   
 
 }
 
@@ -178,30 +178,42 @@
     margin: 0px;
 }
 
-.btn-complete {
-    background: #22c55e;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
+.btn-complete,
+.btn-selectAll,
 .btn-delete {
-    background: #ef4444;
-    color: white;
+    padding: 7px 7px;
+    border-radius: 10px;
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
+    background: white;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.2s;
+    
 }
 
 .btn-complete:hover {
-    background: #16a34a;
+    background: none;
+    color: #22c55e;
+
 }
 
 .btn-delete:hover {
-    background: #dc2626;
+    background: none;
+    color: #ef4444;
+
+}
+.btn-selectAll:hover{
+    background: none;
+    color: #333333d2;
+}
+
+.selected-count {
+    display: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);  
+    
 }
 
 

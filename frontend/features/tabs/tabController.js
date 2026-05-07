@@ -4,7 +4,7 @@
 
 import { loadDashboardTab } from '../dashboard/loadDashboard.js';
 import { loadTasks } from '../tasks/loadTask.js';
-import { setupModal } from '../tasks/ui/setupModal.js';
+import { setupModal } from '../tasks/ui/modal/setupModal.js';
 import { setupSaveTask } from '../tasks/services/saveTask.js';
 
 import { loadInformationTab } from '../user/loadUserInfo.js';
