@@ -6,7 +6,7 @@ export function splitTasks(tasks) {
 }
 
 export function formatStatus(status) {
-    if (status === 'pending') return '<span class="orange-text">Pending</span>';
+    if (status === 'pending') return '<span class="red-text">Not Started</span>';
     if (status === 'in_progress') return '<span class="blue-text">In Progress</span>';
     if (status === 'completed') return '<span class="green-text">Completed</span>';
     return status;

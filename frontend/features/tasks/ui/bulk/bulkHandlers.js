@@ -8,68 +8,147 @@ import {
 
 import { deleteTask } from '../../services/deleteTask.js';
 import { markTaskComplete } from '../../services/completeTask.js';
+
 import { updateBulkActions } from './bulkActions.js';
 
-/* ===== SELECT ONE ===== */
+
+/* ================= SELECT ONE ================= */
+
 export function handleSelectTask(circle, taskEdit) {
-    const selectAllBtn = document.getElementById('selectAllBtn');
+
     const id = circle.dataset.id;
 
-    toggleTask(id);
+    // active | completed
+    const type = circle.dataset.type;
 
-    const isSelected = getSelectedSet().has(id);
+    // toggle đúng group
+    toggleTask(id, type);
+
+    const isSelected = getSelectedSet(type).has(String(id));
 
     circle.classList.toggle('selected', isSelected);
 
-    const activeTasks = taskEdit.filter(task => !task.completed);
-    const allSelected = activeTasks.length === getSelectedTasks().length;
+    // chỉ task đúng group
+    const filteredTasks = taskEdit.filter(task => {
 
-    selectAllBtn.textContent =
-        allSelected
-            ? 'Unselect All'
-            : 'Select All';
+        if (type === 'active') {
+            return !Number(task.completed);
+        }
 
-    updateBulkActions();
-}
+        return Number(task.completed);
+    });
 
-/* ===== SELECT ALL ===== */
-export function handleSelectAll(taskEdit) {
-    const selectAllBtn = document.getElementById('selectAllBtn');
+    // selected đúng group
+    const selectedIds = getSelectedTasks(type);
 
-    const activeTasks = taskEdit.filter(task => !task.completed);
+    const selectedInGroup = filteredTasks.filter(task =>
+        selectedIds.includes(String(task.id))
+    );
 
     const allSelected =
-        activeTasks.length === getSelectedTasks().length;
+        filteredTasks.length === selectedInGroup.length;
 
-    if (allSelected) {
+    // button đúng group
+    const selectAllBtn = document.querySelector(
+        `.select-all-btn[data-type="${type}"]`
+    );
 
-        clearSelection();
+    if (selectAllBtn) {
 
-        document.querySelectorAll('.status-circle').forEach(circle => {
-            circle.classList.remove('selected');
-        });
-
-    } else {
-
-        clearSelection();
-
-        selectAllTasks(activeTasks);
-
-        document.querySelectorAll('.status-circle').forEach(circle => {
-            circle.classList.add('selected');
-        });
-        selectAllBtn.textContent = 'Unselect All';
-
+        selectAllBtn.textContent =
+            allSelected
+                ? 'Unselect All'
+                : 'Select All';
     }
 
     updateBulkActions();
 }
 
 
-/* ===== BULK DELETE ===== */
-export async function handleBulkDelete(loadTasks) {
+/* ================= SELECT ALL ================= */
 
-    const ids = getSelectedTasks();
+export function handleSelectAll(taskEdit, type = 'active') {
+
+    // chỉ task đúng group
+    const filteredTasks = taskEdit.filter(task => {
+
+        if (type === 'active') {
+            return !Number(task.completed);
+        }
+
+        return Number(task.completed);
+    });
+
+    const selectedIds = getSelectedTasks(type);
+
+    const selectedInGroup = filteredTasks.filter(task =>
+        selectedIds.includes(String(task.id))
+    );
+
+    const allSelected =
+        filteredTasks.length === selectedInGroup.length;
+
+    const selectAllBtn = document.querySelector(
+        `.select-all-btn[data-type="${type}"]`
+    );
+
+    /* ================= UNSELECT ================= */
+
+    if (allSelected) {
+
+        filteredTasks.forEach(task => {
+
+            toggleTask(String(task.id), type);
+        });
+
+        document.querySelectorAll('.status-circle').forEach(circle => {
+
+            if (circle.dataset.type === type) {
+
+                circle.classList.remove('selected');
+            }
+        });
+
+        if (selectAllBtn) {
+            selectAllBtn.textContent = 'Select All';
+        }
+    }
+
+    /* ================= SELECT ================= */
+
+    else {
+
+        // clear đúng group
+        clearSelection(type);
+
+        // select đúng group
+        selectAllTasks(filteredTasks, type);
+
+        document.querySelectorAll('.status-circle').forEach(circle => {
+
+            if (circle.dataset.type === type) {
+
+                circle.classList.add('selected');
+            }
+        });
+
+        if (selectAllBtn) {
+            selectAllBtn.textContent = 'Unselect All';
+        }
+    }
+
+    updateBulkActions();
+}
+
+
+/* ================= BULK DELETE ================= */
+
+export async function handleBulkDelete(
+    loadTasks,
+    type = 'active'
+) {
+
+    const ids = getSelectedTasks(type);
 
     if (ids.length === 0) return;
 
@@ -79,18 +158,22 @@ export async function handleBulkDelete(loadTasks) {
         ids.map(id => deleteTask(Number(id)))
     );
 
-    clearSelection();
+    clearSelection(type);
 
     updateBulkActions();
 
-    loadTasks();
+    await loadTasks();
 }
 
 
-/* ===== BULK COMPLETE ===== */
-export async function handleBulkComplete(loadTasks) {
+/* ================= BULK COMPLETE ================= */
 
-    const ids = getSelectedTasks();
+export async function handleBulkComplete(
+    loadTasks,
+    type = 'active'
+) {
+
+    const ids = getSelectedTasks(type);
 
     if (ids.length === 0) return;
 
@@ -98,9 +181,9 @@ export async function handleBulkComplete(loadTasks) {
         ids.map(id => markTaskComplete(Number(id)))
     );
 
-    clearSelection();
+    clearSelection(type);
 
     updateBulkActions();
 
-    loadTasks();
+    await loadTasks();
 }

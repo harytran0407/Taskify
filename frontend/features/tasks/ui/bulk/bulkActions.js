@@ -2,11 +2,9 @@ import { getSelectedCount } from '../../state/taskState.js';
 
 export function updateBulkActions() {
 
-    const bulk =
-        document.getElementById('bulkActions');
+    const bulk = document.getElementById('bulkActions');
 
-    const countTasks =
-        document.querySelector('.selected-count');
+    const countTasks = document.querySelector('.selected-count');
 
     if (!bulk || !countTasks) return;
 
@@ -20,8 +18,7 @@ export function updateBulkActions() {
         // show selected count
         countTasks.style.display = 'inline-flex';
 
-        countTasks.textContent =
-            `(${count}) selected`;
+        countTasks.textContent =`(${count}) selected`;
 
     } else {
 

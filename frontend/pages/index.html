@@ -1,104 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../features/dashboard/dashboard.css">
-    <link rel="stylesheet" href="../features/user/userInfo.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ICONS -->
+    <link rel="stylesheet"
+        href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- GLOBAL CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <!-- FEATURE CSS -->
+    <link rel="stylesheet" href="../features/dashboard/dashboard.css" />
+    <link rel="stylesheet" href="../features/tasks/ui/detail/taskDetail.css" />
+    <link rel="stylesheet" href="../features/user/userInfo.css" />
+
     <title>Taskify</title>
 </head>
+
 <body>
+
+    <!-- ================= HEADER ================= -->
     <header>
+
         <div class="header">
+
+            <!-- LEFT -->
             <div class="header-left">
+
                 <h1>
                     <a href="" class="href">Taskify</a>
                 </h1>
+
             </div>
 
+            <!-- CENTER -->
             <div class="header-center">
+
                 <div class="search-container">
-                    <input type="search" id="search" autocomplete="off" placeholder="Search your task here...">
+
+                    <input
+                        type="search"
+                        id="search"
+                        autocomplete="off"
+                        placeholder="Search your task here..."
+                    />
+
                     <i class="uil uil-search search-icon"></i>
+
                 </div>
+
             </div>
-            
+
+            <!-- RIGHT -->
             <div class="header-right">
+
                 <div class="actions">
-                <i class="uil uil-bell notification"></i>
-                <i class="uil uil-calendar-alt schedule"></i>
+
+                    <i class="uil uil-bell notification"></i>
+
+                    <i class="uil uil-calendar-alt schedule"></i>
+
+                </div>
+
+                <div class="date">
+
+                    <span id="current-day"></span>
+
+                    <span id="current-date"></span>
+
+                </div>
+
             </div>
-            <div class="date">
-                <span id="current-day"></span>
-                <span id="current-date"></span>
-            </div>
-            </div>
-            
-            
+
         </div>
+
     </header>
 
+
+    <!-- ================= PAGE CONTAINER ================= -->
     <div class="page-container">
-        <div class="sidebar">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+
+            <!-- AUTH SECTION -->
             <div id="auth-section">
-                <div class="profile" id="profile-section" style="display: none;">
-                    <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/588546170_1361983112261783_61586126430797922_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=YKXg1qLXXoAQ7kNvwGQLNvz&_nc_oc=AdqEzmXaJdx-JNfin6rvXMTXxyc9TnwjaEq6LAe3FnVVmYNcVyAhLhNctb47YZ8XYsg&_nc_zt=23&_nc_ht=scontent.fsgn5-15.fna&_nc_gid=Wauh_Tu1LtGmnwEn8eqIBg&_nc_ss=7b2a8&oh=00_Af2-S9PPurNIwyJHIwNaiN0N-tVckz8xZUbHbSQGQY9EJA&oe=69F3F8BC" alt="avatar">
+
+                <!-- PROFILE -->
+                <div
+                    class="profile"
+                    id="profile-section"
+                    style="display: none;"
+                >
+
+                    <img
+                        src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/588546170_1361983112261783_61586126430797922_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=YKXg1qLXXoAQ7kNvwGQLNvz&_nc_oc=AdqEzmXaJdx-JNfin6rvXMTXxyc9TnwjaEq6LAe3FnVVmYNcVyAhLhNctb47YZ8XYsg&_nc_zt=23&_nc_ht=scontent.fsgn5-15.fna&_nc_gid=Wauh_Tu1LtGmnwEn8eqIBg&_nc_ss=7b2a8&oh=00_Af2-S9PPurNIwyJHIwNaiN0N-tVckz8xZUbHbSQGQY9EJA&oe=69F3F8BC"
+                        alt="avatar"
+                    />
+
                     <h3 id="username"></h3>
+
                     <p id="email"></p>
+
                 </div>
 
+                <!-- AUTH BUTTONS -->
                 <div class="auth-buttons" id="auth-buttons">
-                    <a href="login.html" class="btn-signin">Sign In</a>
-                    <a href="register.html" class="btn-signup">Sign Up</a>
+
+                    <a href="login.html" class="btn-signin">
+                        Sign In
+                    </a>
+
+                    <a href="register.html" class="btn-signup">
+                        Sign Up
+                    </a>
+
                 </div>
+
             </div>
 
+
+            <!-- SIDEBAR MENU -->
             <ul class="sidebar-menu">
+
                 <li class="active" data-tab="dashboard">
-                    <i class="uil uil-estate"></i> 
+                    <i class="uil uil-estate"></i>
                     Dashboard
                 </li>
+
                 <li data-tab="vital">
                     <i class="uil uil-bolt"></i>
                     Vital Task
                 </li>
+
                 <li data-tab="my-task">
-                    <i class="uil uil-clipboard-notes"></i> 
+                    <i class="uil uil-clipboard-notes"></i>
                     My Task
                 </li>
+
                 <li data-tab="categories">
-                    <i class="uil uil-apps"></i> 
+                    <i class="uil uil-apps"></i>
                     Task Categories
                 </li>
+
                 <li data-tab="settings">
-                    <i class="uil uil-setting"></i> 
+                    <i class="uil uil-setting"></i>
                     Settings
                 </li>
+
                 <li data-tab="information">
-                    <i class="uil uil-user"></i> 
+                    <i class="uil uil-user"></i>
                     User Information
                 </li>
+
             </ul>
 
-            <div class="logout" id="logout-btn" style="display: none;">
+
+            <!-- LOGOUT -->
+            <div
+                class="logout"
+                id="logout-btn"
+                style="display: none;"
+            >
+
                 <i class="uil uil-signout"></i>
+
                 <span>Logout</span>
+
             </div>
-        </div>
+
+        </aside>
 
 
+        <!-- ================= MAIN WRAPPER ================= -->
+        <main class="wrapper">
 
-        <div class="wrapper">
+            <!-- ================= APP ROOT ================= -->
             <div id="app">
+
                 <h2>Loading...</h2>
+
             </div>
-        
+
+
+            <!-- ================= GLOBAL MODAL ================= -->
+            <div id="addTaskModal" class="modal">
+
+                <div class="modal-content">
+
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header">
+
+                        <h2
+                            class="modal-title"
+                            id="modalTitle"
+                        >
+                            Add New Task
+                        </h2>
+
+                        <button
+                            class="btn-go-back"
+                            id="closeModal"
+                        >
+                            Go Back
+                        </button>
+
+                    </div>
+
+
+                    <!-- MODAL BODY -->
+                    <div class="modal-body">
+
+                        <!-- TITLE -->
+                        <div class="input-group">
+
+                            <label>Title</label>
+
+                            <input
+                                type="text"
+                                id="taskTitle"
+                                placeholder="Enter task title..."
+                                required
+                            />
+
+                        </div>
+
+
+                        <!-- DATE -->
+                        <div class="input-group">
+
+                            <label>Date</label>
+
+                            <div class="date-input-wrapper">
+
+                                <input
+                                    type="date"
+                                    id="taskDate"
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PRIORITY -->
+                        <div class="priority-group">
+
+                            <label>Priority</label>
+
+                            <div class="priority-options">
+
+                                <!-- EXTREME -->
+                                <label class="custom-radio">
+
+                                    <span class="dot red"></span>
+
+                                    Extreme
+
+                                    <input
+                                        type="radio"
+                                        name="priority"
+                                        value="extreme"
+                                    />
+
+                                    <span class="square-box"></span>
+
+                                </label>
+
+
+                                <!-- MODERATE -->
+                                <label class="custom-radio">
+
+                                    <span class="dot blue"></span>
+
+                                    Moderate
+
+                                    <input
+                                        type="radio"
+                                        name="priority"
+                                        value="moderate"
+                                    />
+
+                                    <span class="square-box"></span>
+
+                                </label>
+
+
+                                <!-- LOW -->
+                                <label class="custom-radio">
+
+                                    <span class="dot green"></span>
+
+                                    Low
+
+                                    <input
+                                        type="radio"
+                                        name="priority"
+                                        value="low"
+                                    />
+
+                                    <span class="square-box"></span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DESCRIPTION + UPLOAD -->
+                        <div class="flex-row">
+
+                            <!-- DESCRIPTION -->
+                            <div class="input-group flex-1">
+
+                                <label>Task Description</label>
+
+                                <textarea
+                                    id="taskDesc"
+                                    placeholder="Start writing here..."
+                                ></textarea>
+
+                            </div>
+
+
+                            <!-- UPLOAD -->
+                            <div class="upload-section">
+
+                                <label>Upload Image</label>
+
+                                <div class="upload-box">
+
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                                    <p>
+                                        Drop files here or
+                                        <span>Browse</span>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MODAL FOOTER -->
+                    <div class="modal-footer">
+
+                        <button class="btn" id="saveTaskBtn">
+                            Add Task
+                        </button>
+
+                    </div>
+
+
+                    <!-- MESSAGES -->
+                    <div
+                        id="task-error-message"
+                        class="error-message"
+                    ></div>
+
+                    <div
+                        id="task-success-message"
+                        class="success-message"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= NOTIFICATIONS ================= -->
             <ul class="notifications"></ul>
-        </div>
+
+        </main>
+
     </div>
+
+
+    <!-- ================= MAIN JS ================= -->
     <script type="module" src="../main.js"></script>
+
 </body>
 </html>

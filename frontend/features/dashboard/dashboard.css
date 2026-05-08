@@ -180,7 +180,8 @@
 
 .btn-complete,
 .btn-selectAll,
-.btn-delete {
+.btn-delete,
+.btn-recomplete {
     padding: 7px 7px;
     border-radius: 10px;
     border: none;
@@ -203,7 +204,7 @@
     color: #ef4444;
 
 }
-.btn-selectAll:hover{
+.btn-selectAll:hover, .btn-recomplete:hover{
     background: none;
     color: #333333d2;
 }
@@ -376,7 +377,6 @@
     outline: none;
     resize: vertical;
 }
-
 
 .upload-section label{margin-bottom: 5px; font-weight: 500; font-size: 14px; color: #202020;}
 .upload-box {

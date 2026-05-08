@@ -1,7 +1,9 @@
 export function loadDashboardTab() {
     const username = localStorage.getItem('username') || 'Guest';
 
-    return `
+    const app = document.getElementById('app');
+
+    app.innerHTML=  `
     <div class="dashboard-container">
         <header class="dashboard-header">
             <h1>Welcome back, <span id="dashboard-username">${username}</span> 👋</h1>            
@@ -31,10 +33,8 @@ export function loadDashboardTab() {
                             <div class="bulk-buttons">                                
                                 <button id="completeBtn" class="btn-complete">Complete</button>
                                 <button id="deleteBtn" class="btn-delete">Delete</button>
-                                <button id="selectAllBtn" class="btn-selectAll">Select All</button>
-                            </div>
-
-                            
+                                <button class="btn-selectAll select-all-btn" data-type="active">Select All</button>
+                            </div>                 
 
                             
                         </div>
@@ -52,6 +52,8 @@ export function loadDashboardTab() {
                     </p>
                 
             </section>
+
+            
 
             <div class="sidebar-content">
                 <section class="status-section card">
@@ -73,8 +75,41 @@ export function loadDashboardTab() {
                 </section>
 
                 <section class="completed-section card">
-                    <h2 class="title-todo"><i class="fa-regular fa-square-check"></i> Completed Task</h2>
-                    <div id="completedTaskList" class="completed-list"></div>                
+
+                    <div class="completed-header">
+
+                        <h2 class="title-todo">
+                            <i class="fa-regular fa-square-check"></i>
+                            Completed Task
+                        </h2>
+
+                        <div class="completed-actions">
+
+                            <button
+                                class="btn-selectAll select-all-btn"
+                                data-type="completed">
+
+                                Select All
+
+                            </button>
+
+                            <button
+                                class="btn-recomplete recomplete-btn"
+                                data-type="completed">
+
+                                Recomplete
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="completedTaskList"
+                        class="completed-list">
+                    </div>
+
                 </section>
             </div>
         </div>
@@ -82,71 +117,10 @@ export function loadDashboardTab() {
 
     
     
-    <div id="addTaskModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle" >Add New Task</h2>
-                <button class="btn-go-back" id="closeModal">Go Back</button>
-            </div>
-            
-            <div class="modal-body">
-                <div class="input-group">
-                    <label>Title</label>
-                    <input type="text" id="taskTitle" placeholder="Enter task title..." required>
-                </div>
-
-                <div class="input-group">
-                    <label>Date</label>
-                    <div class="date-input-wrapper">
-                        <input type="date" id="taskDate" placeholder="DD/MM/YYYY" required>
-                    </div>
-                </div>
-
-                <div class="priority-group">
-                    <label>Priority</label>
-                    <div class="priority-options">
-                        <label class="custom-radio">                             
-                            <span class="dot red"></span> Extreme 
-                            <input type="radio" name="priority" value="extreme"> 
-                            <span class="square-box"></span>
-                        </label>
-                        <label class="custom-radio">                             
-                            <span class="dot blue"></span> Moderate 
-                            <input type="radio" name="priority" value="moderate"> 
-                            <span class="square-box"></span>
-                        </label>
-                        <label class="custom-radio">                             
-                            <span class="dot green"></span> Low 
-                            <input type="radio" name="priority" value="low"> 
-                            <span class="square-box"></span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="flex-row">
-                    <div class="input-group flex-1">
-                        <label>Task Description</label>
-                        <textarea id="taskDesc" placeholder="Start writing here..."></textarea>
-                    </div>
-                    <div class="upload-section">
-                        <label>Upload Image</label>
-                        <div class="upload-box">
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
-                            <p>Drop files here or <span>Browse</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn" id="saveTaskBtn">Add Task</button>
-            </div>
-            <div id="task-error-message" class="error-message"></div>
-            <div id="task-success-message" class="success-message"></div>
-
-        </div>
-    </div>
+    
 
     
     `;
+
+    
 }

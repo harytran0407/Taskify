@@ -2,7 +2,7 @@
 // TAB CONTROLLER (CLEAN VERSION)
 // ==============================
 
-import { loadDashboardTab } from '../dashboard/loadDashboard.js';
+import { loadDashboardTab } from '../dashboard/dashboardView.js';
 import { loadTasks } from '../tasks/loadTask.js';
 import { setupModal } from '../tasks/ui/modal/setupModal.js';
 import { setupSaveTask } from '../tasks/services/saveTask.js';
@@ -23,7 +23,7 @@ export function loadTab(tab) {
     if (tab === "dashboard") {
 
         // render UI
-        app.innerHTML = loadDashboardTab();
+        loadDashboardTab();
 
         // init dashboard features
         loadTasks();
