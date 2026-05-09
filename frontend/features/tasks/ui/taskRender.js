@@ -11,14 +11,13 @@ import { isSelected } from '../state/taskState.js';
 export function renderTasks(tasks, container) {
 
     container.innerHTML = tasks.map(task => {
-
-        const type = task.completed
+        const type = task.status === 'completed'
             ? 'completed'
             : 'active';
 
         return `
         
-        <div class="task-card" data-id="${task.id}">
+        <div class="task-card" data-id="${task.id}" data-type="${type}">
 
             <div class="task-row">
 

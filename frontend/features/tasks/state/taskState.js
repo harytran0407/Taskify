@@ -1,41 +1,44 @@
 const state = {
-
-    activeSelected: new Set(),
-
-    completedSelected: new Set()
+    active: new Set(),
+    completed: new Set()
 };
 
+const VALID_TYPES = ['active', 'completed'];
 
-/* ================= GET SET ================= */
+function validateType(type) {
 
-function getSet(type = 'active') {
+    if (!VALID_TYPES.includes(type)) {
+        throw new Error(`Invalid type: ${type}`);
+    }
+}
 
-    return type === 'completed'
-        ? state.completedSelected
-        : state.activeSelected;
+function getSet(type) {
+
+    validateType(type);
+
+    return state[type];
 }
 
 
 /* ================= TOGGLE ================= */
 
-export function toggleTask(id, type = 'active') {
+export function toggleTask(id, type) {
 
     const selectedSet = getSet(type);
 
-    if (selectedSet.has(String(id))) {
+    const key = String(id);
 
-        selectedSet.delete(String(id));
-
+    if (selectedSet.has(key)) {
+        selectedSet.delete(key);
     } else {
-
-        selectedSet.add(String(id));
+        selectedSet.add(key);
     }
 }
 
 
 /* ================= CLEAR ================= */
 
-export function clearSelection(type = 'active') {
+export function clearSelection(type) {
 
     getSet(type).clear();
 }
@@ -43,25 +46,22 @@ export function clearSelection(type = 'active') {
 
 /* ================= GETTERS ================= */
 
-export function getSelectedTasks(type = 'active') {
+export function getSelectedTasks(type) {
 
     return [...getSet(type)];
 }
 
-
-export function getSelectedSet(type = 'active') {
+export function getSelectedSet(type) {
 
     return getSet(type);
 }
 
-
-export function isSelected(id, type = 'active') {
+export function isSelected(id, type) {
 
     return getSet(type).has(String(id));
 }
 
-
-export function getSelectedCount(type = 'active') {
+export function getSelectedCount(type) {
 
     return getSet(type).size;
 }
@@ -69,12 +69,25 @@ export function getSelectedCount(type = 'active') {
 
 /* ================= SELECT ALL ================= */
 
-export function selectAllTasks(tasks, type = 'active') {
+export function selectAllTasks(tasks, type) {
 
     const selectedSet = getSet(type);
 
     tasks.forEach(task => {
-
         selectedSet.add(String(task.id));
     });
+}
+
+
+/* ================= HELPERS ================= */
+
+export function areAllTasksSelected(tasks, type) {
+
+    if (!tasks.length) return false;
+
+    const selectedSet = getSet(type);
+
+    return tasks.every(task =>
+        selectedSet.has(String(task.id))
+    );
 }

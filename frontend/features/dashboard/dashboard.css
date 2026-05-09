@@ -190,6 +190,8 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
+    text-decoration: underline;
+    text-underline-offset: 2px;
     
 }
 
@@ -210,11 +212,9 @@
 }
 
 .selected-count {
-    display: none;
     font-size: 12px;
     font-weight: 600;
-    color: var(--primary);  
-    
+    color: var(--primary);      
 }
 
 
@@ -282,6 +282,26 @@
     border-radius: 12px;
     object-fit: cover;
 }
+
+.completed-header{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.completed-toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.completed-actions{
+    display: flex;
+    align-items: center;
+}
+
+
 
 
 

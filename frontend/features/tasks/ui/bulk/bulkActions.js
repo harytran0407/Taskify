@@ -1,31 +1,24 @@
-import { getSelectedCount } from '../../state/taskState.js';
+import { getSelectedCount }
+from '../../state/taskState.js';
 
-export function updateBulkActions() {
+export function updateBulkActions(type) {
 
-    const bulk = document.getElementById('bulkActions');
+    
 
-    const countTasks = document.querySelector('.selected-count');
+    const bulkContainer =
+        document.getElementById(
+            `bulkActions-${type}`
+        );
+    
 
-    if (!bulk || !countTasks) return;
 
-    const count = getSelectedCount();
+    if (!bulkContainer) return;
 
-    if (count > 0) {
+    const selectedCount =
+        getSelectedCount(type);
 
-        // show bulk buttons
-        bulk.style.display = 'flex';
-
-        // show selected count
-        countTasks.style.display = 'inline-flex';
-
-        countTasks.textContent =`(${count}) selected`;
-
-    } else {
-
-        // hide bulk buttons
-        bulk.style.display = 'none';
-
-        // hide selected count
-        countTasks.style.display = 'none';
-    }
+    bulkContainer.style.display =
+        selectedCount > 0
+            ? 'flex'
+            : 'none';
 }

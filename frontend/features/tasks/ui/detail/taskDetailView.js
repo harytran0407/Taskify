@@ -71,7 +71,7 @@ export function renderTaskDetail(task) {
                     <i class="fa-solid fa-pen"></i>
                 </button>
 
-                ${Number(task.completed) === 1
+                ${task.status === "completed"
                     ? `
                         <button disabled class="completed-btn">
                             <i class="fa-solid fa-rotate-right"></i>

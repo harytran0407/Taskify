@@ -28,24 +28,25 @@ export function loadDashboardTab() {
                         <span class="date-text"><span id="current-date"></span> • Today</span>
                     </div>
                     <div class="card-header-right">
-                        <div id="bulkActions" class="bulk-actions" style="display: none;">
-                            
-                            <div class="bulk-buttons">                                
-                                <button id="completeBtn" class="btn-complete">Complete</button>
-                                <button id="deleteBtn" class="btn-delete">Delete</button>
+                        <!-- ACTIVE bulk -->
+                        <div id="bulkActions-active" class="bulk-actions" style="display: none;">
+                            <div class="bulk-buttons">
+                                <button id="completeBtn-active" class="btn-complete" data-type="active">Complete</button>
+                                <button id="deleteBtn-active" class="btn-delete" data-type="active">Delete</button>
                                 <button class="btn-selectAll select-all-btn" data-type="active">Select All</button>
-                            </div>                 
-
-                            
+                            </div>
                         </div>
+                        <!-- ACTIVE bulk end -->
+
                         <button class="add-task-btn">+ Add task</button>
-                        
                     </div>
                     
                     
                 </div>
-                <span class="selected-count"></span>
+                <span class="selected-count" data-type="active"></span>
+
                 <!-- Task List -->
+
                 <div id="taskList" class="task-list"></div>
                     <p class="empty-task-message">
                         No tasks available. Click + Add task to start!
@@ -83,32 +84,29 @@ export function loadDashboardTab() {
                             Completed Task
                         </h2>
 
-                        <div class="completed-actions">
+                        <div class="completed-toolbar">
+                            <span class="selected-count" data-type="completed"></span>
 
-                            <button
-                                class="btn-selectAll select-all-btn"
-                                data-type="completed">
+                            <div class="completed-actions">
 
-                                Select All
+                                <div id="bulkActions-completed" class="bulk-actions" style="display: none;">
 
-                            </button>
+                                    <div class="bulk-buttons">
 
-                            <button
-                                class="btn-recomplete recomplete-btn"
-                                data-type="completed">
+                                        <button class="btn-delete" id="deleteBtn-completed" data-type="completed">Delete</button>
+                                        <button class="btn-recomplete" id="recompleteBtn-completed" data-type="completed">Recomplete</button>
+                                        <button class="btn-selectAll select-all-btn" data-type="completed">Select All</button>
 
-                                Recomplete
+                                    </div>
 
-                            </button>
+                                </div>
 
-                        </div>
+                            </div>
+                        </div>      
 
                     </div>
 
-                    <div
-                        id="completedTaskList"
-                        class="completed-list">
-                    </div>
+                    <div id="completedTaskList" class="completed-list"></div>
 
                 </section>
             </div>

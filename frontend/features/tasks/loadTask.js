@@ -24,82 +24,13 @@ import { loadDashboardTab } from '../dashboard/dashboardView.js';
 /* ================= STATE ================= */
 
 let taskEdit = [];
-
-// task đang mở detail
 let currentDetailTaskId = null;
 
 
-/* ================= LOAD TASKS ================= */
+/* ================= HELPERS ================= */
 
-export async function loadTasks() {
-
-    const taskList = document.getElementById('taskList');
-    const completedList = document.getElementById('completedTaskList');
-    const emptyMessage = document.querySelector('.empty-task-message');
-
-    // đang ở detail page
-    if (!taskList || !completedList) return;
-
-    try {
-
-        const res = await getTasks();
-
-        const tasks = Array.isArray(res)
-            ? res
-            : (res.tasks || res.data || []);
-
-        // normalize
-        taskEdit = tasks.map(task => ({
-            ...task,
-            completed: Number(task.completed)
-        }));
-
-        const { active, completed } = splitTasks(taskEdit);
-
-        /* ================= ACTIVE TASKS ================= */
-
-        if (active.length === 0) {
-
-            taskList.innerHTML = '';
-
-            if (emptyMessage) {
-                emptyMessage.style.display = 'block';
-            }
-
-        } else {
-
-            if (emptyMessage) {
-                emptyMessage.style.display = 'none';
-            }
-
-            renderTasks(active, taskList);
-        }
-
-        /* ================= COMPLETED TASKS ================= */
-
-        renderTasks(completed, completedList);
-
-        /* ================= BULK UI ================= */
-
-        updateBulkActions();
-
-    } catch (error) {
-
-        console.error(error);
-
-        if (taskList) {
-            taskList.innerHTML = '<p>Lỗi khi tải task</p>';
-        }
-    }
-}
-
-
-/* ================= REFRESH DETAIL ================= */
-
-async function refreshDetailView() {
-
-    // không ở detail
-    if (!currentDetailTaskId) return false;
+// lấy toàn bộ tasks mới nhất
+async function fetchTasks() {
 
     const res = await getTasks();
 
@@ -107,12 +38,77 @@ async function refreshDetailView() {
         ? res
         : (res.tasks || res.data || []);
 
-    taskEdit = tasks.map(task => ({
-        ...task,
-        completed: Number(task.completed)
-    }));
+    taskEdit = tasks;
 
-    const updatedTask = taskEdit.find(
+    return tasks;
+}
+
+
+// render dashboard list
+function renderTaskLists(tasks) {
+
+    const taskList =
+        document.getElementById('taskList');
+
+    const completedList =
+        document.getElementById('completedTaskList');
+
+    const emptyMessage =
+        document.querySelector('.empty-task-message');
+
+    // đang ở detail
+    if (!taskList || !completedList) return;
+
+    const { active, completed } =
+        splitTasks(tasks);
+
+    /* ================= ACTIVE ================= */
+
+    if (active.length === 0) {
+
+        taskList.innerHTML = '';
+
+        if (emptyMessage) {
+            emptyMessage.style.display = 'block';
+        }
+
+    } else {
+
+        if (emptyMessage) {
+            emptyMessage.style.display = 'none';
+        }
+
+        renderTasks(active, taskList);
+    }
+
+    /* ================= COMPLETED ================= */
+
+    renderTasks(completed, completedList);
+
+    updateBulkActions('active');
+    updateBulkActions('completed');
+}
+
+
+// render detail
+function renderDetail(task) {
+
+    const app = document.getElementById('app');
+
+    if (!app) return;
+
+    app.innerHTML = renderTaskDetail(task);
+}
+
+
+// reload detail nếu đang ở detail
+async function refreshDetailView() {
+
+    if (!currentDetailTaskId) return false;
+
+    const tasks = await fetchTasks();
+
+    const updatedTask = tasks.find(
         t => t.id == currentDetailTaskId
     );
 
@@ -122,18 +118,49 @@ async function refreshDetailView() {
         currentDetailTaskId = null;
 
         await loadDashboardTab();
-        await loadTasks();
+
+        renderTaskLists(tasks);
 
         return true;
     }
 
-    const app = document.getElementById('app');
-
-    if (!app) return false;
-
-    app.innerHTML = renderTaskDetail(updatedTask);
+    renderDetail(updatedTask);
 
     return true;
+}
+
+
+// emit update
+function emitTaskUpdated() {
+
+    window.dispatchEvent(
+        new Event('taskUpdated')
+    );
+}
+
+
+/* ================= LOAD TASKS ================= */
+
+export async function loadTasks() {
+
+    try {
+
+        const tasks = await fetchTasks();
+
+        renderTaskLists(tasks);
+
+    } catch (error) {
+
+        console.error(error);
+
+        const taskList =
+            document.getElementById('taskList');
+
+        if (taskList) {
+            taskList.innerHTML =
+                '<p>Lỗi khi tải task</p>';
+        }
+    }
 }
 
 
@@ -151,17 +178,22 @@ if (!isBound) {
 
             const id = e.target.dataset.id;
 
-            const menu = document.getElementById(`menu-${id}`);
+            const menu =
+                document.getElementById(`menu-${id}`);
 
             if (!menu) return;
 
-            const isOpen = menu.style.display === 'block';
+            const isOpen =
+                menu.style.display === 'block';
 
             document
                 .querySelectorAll('.dropdown')
-                .forEach(m => m.style.display = 'none');
+                .forEach(m => {
+                    m.style.display = 'none';
+                });
 
-            menu.style.display = isOpen ? 'none' : 'block';
+            menu.style.display =
+                isOpen ? 'none' : 'block';
 
             return;
         }
@@ -169,13 +201,12 @@ if (!isBound) {
 
         /* ================= GO BACK ================= */
 
-        const goBackBtn = e.target.closest('#closeDetailBtn');
-
-        if (goBackBtn) {
+        if (e.target.closest('#closeDetailBtn')) {
 
             currentDetailTaskId = null;
 
             await loadDashboardTab();
+
             await loadTasks();
 
             return;
@@ -184,7 +215,8 @@ if (!isBound) {
 
         /* ================= DELETE TASK ================= */
 
-        const deleteBtn = e.target.closest('.delete-task');
+        const deleteBtn =
+            e.target.closest('.delete-task');
 
         if (deleteBtn) {
 
@@ -194,9 +226,7 @@ if (!isBound) {
 
             await deleteTask(id);
 
-            window.dispatchEvent(
-                new Event('taskUpdated')
-            );
+            emitTaskUpdated();
 
             return;
         }
@@ -204,7 +234,8 @@ if (!isBound) {
 
         /* ================= EDIT TASK ================= */
 
-        const editBtn = e.target.closest('.edit-task');
+        const editBtn =
+            e.target.closest('.edit-task');
 
         if (editBtn) {
 
@@ -224,7 +255,8 @@ if (!isBound) {
 
         /* ================= COMPLETE TASK ================= */
 
-        const completeBtn = e.target.closest('.complete-task');
+        const completeBtn =
+            e.target.closest('.complete-task');
 
         if (completeBtn) {
 
@@ -236,8 +268,7 @@ if (!isBound) {
 
             if (!task) return;
 
-            // đã complete
-            if (Number(task.completed) === 1) {
+            if (task.status === 'completed') {
 
                 alert('Task already completed');
 
@@ -246,25 +277,70 @@ if (!isBound) {
 
             await markTaskComplete(id);
 
-            window.dispatchEvent(
-                new Event('taskUpdated')
-            );
+            emitTaskUpdated();
 
             return;
         }
 
-        /* ================= RECOMPLETE ================= */
 
-        const recompleteBtn = e.target.closest('.recomplete-btn');
+        /* ================= SELECT TASK ================= */
 
-        if (recompleteBtn) {
+        const circle =
+            e.target.closest('.status-circle');
 
-            const type = recompleteBtn.dataset.type;
+        if (circle) {
 
-            await handleBulkComplete(loadTasks, type);
+            handleSelectTask(circle, taskEdit);
 
             return;
         }
+
+
+        /* ================= SELECT ALL ================= */
+
+        const selectBtn =
+            e.target.closest('.select-all-btn');
+
+        if (selectBtn) {
+
+            const type =
+                selectBtn.dataset.type;
+
+            handleSelectAll(taskEdit, type);
+
+            return;
+        }
+
+
+        /* ================= BULK DELETE ACTIVE ================= */
+
+        if (e.target.closest('#deleteBtn-active')) {
+            await handleBulkDelete(loadTasks, 'active');
+            return;
+        }
+
+        /* ================= BULK COMPLETE ACTIVE ================= */
+
+        if (e.target.closest('#completeBtn-active')) {
+            await handleBulkComplete(loadTasks, 'active');
+            return;
+        }
+
+        /* ================= BULK DELETE COMPLETED ================= */
+
+        if (e.target.closest('#deleteBtn-completed')) {
+            await handleBulkDelete(loadTasks, 'completed');
+            return;
+        }
+
+        /* ================= BULK RECOMPLETE COMPLETED ================= */
+
+        if (e.target.closest('#recompleteBtn-completed')) {
+            await handleBulkComplete(loadTasks, 'completed');
+            return;
+        }
+
+
 
 
         /* ================= CLICK OUTSIDE MENU ================= */
@@ -279,49 +355,6 @@ if (!isBound) {
         }
 
 
-        /* ================= SELECT TASK ================= */
-
-        const circle = e.target.closest('.status-circle');
-
-        if (circle) {
-
-            handleSelectTask(circle, taskEdit);
-
-            return;
-        }
-
-
-        /* ================= SELECT ALL ================= */
-
-        const selectBtn = e.target.closest('.select-all-btn');
-
-        if (selectBtn) {
-            const type = selectBtn.dataset.type;
-            handleSelectAll(taskEdit, type);
-            return;
-        }
-
-
-        /* ================= BULK DELETE ================= */
-
-        if (e.target.closest('#deleteBtn')) {
-
-            await handleBulkDelete(loadTasks);
-
-            return;
-        }
-
-
-        /* ================= BULK COMPLETE ================= */
-
-        if (e.target.closest('#completeBtn')) {
-
-            await handleBulkComplete(loadTasks);
-
-            return;
-        }
-
-
         /* ================= TASK DETAIL ================= */
 
         const blocked =
@@ -332,31 +365,24 @@ if (!isBound) {
             e.target.closest('.dropdown') ||
             e.target.closest('.complete-task');
 
-        if (!blocked) {
+        if (blocked) return;
 
-            const taskCard = e.target.closest('.task-card');
+        const taskCard =
+            e.target.closest('.task-card');
 
-            if (taskCard) {
+        if (!taskCard) return;
 
-                const id = taskCard.dataset.id;
+        const id = taskCard.dataset.id;
 
-                const task = taskEdit.find(
-                    t => t.id == id
-                );
+        const task = taskEdit.find(
+            t => t.id == id
+        );
 
-                if (!task) return;
+        if (!task) return;
 
-                currentDetailTaskId = id;
+        currentDetailTaskId = id;
 
-                const app = document.getElementById('app');
-
-                if (!app) return;
-
-                app.innerHTML = renderTaskDetail(task);
-            }
-
-            return;
-        }
+        renderDetail(task);
     });
 
     isBound = true;
@@ -371,16 +397,16 @@ window.addEventListener(
 );
 
 
-/* ================= TASK UPDATED ================= */
+window.addEventListener(
+    'taskUpdated',
+    async () => {
 
-window.addEventListener('taskUpdated', async () => {
+        const refreshed =
+            await refreshDetailView();
 
-    // đang ở detail
-    const refreshed = await refreshDetailView();
-
-    // dashboard
-    if (!refreshed) {
-
-        await loadTasks();
+        // đang ở dashboard
+        if (!refreshed) {
+            await loadTasks();
+        }
     }
-});
+);
