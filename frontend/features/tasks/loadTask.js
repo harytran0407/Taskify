@@ -2,6 +2,7 @@ import { getTasks } from './services/getTask.js';
 import { deleteTask } from './services/deleteTask.js';
 import { markTaskComplete } from './services/completeTask.js';
 
+
 import { renderTasks } from './ui/taskRender.js';
 import { renderTaskDetail } from './ui/detail/taskDetailView.js';
 
@@ -11,7 +12,8 @@ import {
     handleSelectTask,
     handleSelectAll,
     handleBulkDelete,
-    handleBulkComplete
+    handleBulkComplete,
+    handleBulkReComplete
 } from './ui/bulk/bulkHandlers.js';
 
 import { splitTasks } from './utils/taskUtils.js';
@@ -130,8 +132,8 @@ async function refreshDetailView() {
 }
 
 
-// emit update
-function emitTaskUpdated() {
+// edit update
+function editTaskUpdated() {
 
     window.dispatchEvent(
         new Event('taskUpdated')
@@ -226,7 +228,7 @@ if (!isBound) {
 
             await deleteTask(id);
 
-            emitTaskUpdated();
+            editTaskUpdated();
 
             return;
         }
@@ -255,8 +257,7 @@ if (!isBound) {
 
         /* ================= COMPLETE TASK ================= */
 
-        const completeBtn =
-            e.target.closest('.complete-task');
+        const completeBtn = e.target.closest('.complete-task');
 
         if (completeBtn) {
 
@@ -269,18 +270,16 @@ if (!isBound) {
             if (!task) return;
 
             if (task.status === 'completed') {
-
                 alert('Task already completed');
-
                 return;
             }
 
             await markTaskComplete(id);
-
-            emitTaskUpdated();
-
+            editTaskUpdated();
             return;
         }
+
+        
 
 
         /* ================= SELECT TASK ================= */
@@ -298,8 +297,7 @@ if (!isBound) {
 
         /* ================= SELECT ALL ================= */
 
-        const selectBtn =
-            e.target.closest('.select-all-btn');
+        const selectBtn = e.target.closest('.select-all-btn');
 
         if (selectBtn) {
 
@@ -336,7 +334,7 @@ if (!isBound) {
         /* ================= BULK RECOMPLETE COMPLETED ================= */
 
         if (e.target.closest('#recompleteBtn-completed')) {
-            await handleBulkComplete(loadTasks, 'completed');
+            await handleBulkReComplete(loadTasks, 'completed');
             return;
         }
 

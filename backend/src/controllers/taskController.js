@@ -87,3 +87,18 @@ export const markComplete = async (req, res) => {
     res.json({ message: 'Task marked as complete' });
 };
 
+export const markReComplete = async (req, res) => {
+    const userId = req.id;
+    const { id: taskId } = req.params;
+
+    await pool.request()
+        .input('userId', sql.Int, userId)
+        .input('taskId', sql.Int, taskId)
+        .query(`
+            UPDATE Tasks 
+            SET status = 'pending' 
+            WHERE id = @taskId AND user_id = @userId
+        `);
+
+    res.json({ message: 'Task marked as Recomplete' });
+};

@@ -14,6 +14,7 @@ import {
 
 import { deleteTask } from '../../services/deleteTask.js';
 import { markTaskComplete } from '../../services/completeTask.js';
+import { markTaskReComplete } from '../../services/reComplete.js';
 
 import { updateBulkActions } from './bulkActions.js';
 
@@ -137,6 +138,26 @@ export async function handleBulkComplete(
 
     await Promise.all(
         ids.map(id => markTaskComplete(Number(id)))
+    );
+
+    clearSelection(type);
+
+    updateBulkActions(type);
+
+    await loadTasks();
+}
+
+export async function handleBulkReComplete(
+    loadTasks,
+    type
+) {
+
+    const ids = getSelectedTasks(type);
+
+    if (!ids.length) return;
+
+    await Promise.all(
+        ids.map(id => markTaskReComplete(Number(id)))
     );
 
     clearSelection(type);
