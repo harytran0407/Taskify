@@ -25,9 +25,31 @@ export function loadDashboardTab() {
                 <div class="card-header">
                     <div>
                         <h2 class="title-todo"><i class="fa-regular fa-clipboard"></i> To-Do</h2>
-                        <span class="date-text"><span id="current-date"></span> • Today</span>
+                        <div class="date-filter">
+                            <button class="date-filter-btn" id="dateBtn">
+                                <div class="date-filter-left">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    <span id="selectedDateText">Hôm nay</span>
+                                </div>
+                                <span class="chevron">▾</span>
+                            </button>
+
+                            <div class="date-dropdown" id="dateDropdown">
+                                <div class="date-option active" data-value="today">Today</div>
+                                <div class="date-option" data-value="yesterday">Yesterday</div>
+                                <div class="date-option" data-value="tomorrow">Tomorrow</div>
+
+                                <div class="divider"></div>
+
+                                <div class="custom-date-section">
+                                    <label for="taskDateFilter">Tùy chỉnh ngày</label>
+                                    <input type="date" id="taskDateFilter">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-header-right">
+                        
                         <!-- ACTIVE bulk -->
                         <div id="bulkActions-active" class="bulk-actions" style="display: none;">
                             <div class="bulk-buttons">

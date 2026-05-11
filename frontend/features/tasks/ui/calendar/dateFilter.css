@@ -1,0 +1,132 @@
+:root {
+    --primary-color: #3b82f6;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --bg-hover: #f3f4f6;
+    --border-color: #e5e7eb;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.date-filter {
+    position: relative;
+    width: 240px; /* Tăng nhẹ độ rộng */
+    font-family: 'Inter', sans-serif;
+    margin-top: 8px;
+}
+
+.date-filter-btn {
+    width: 70%;
+    height: 35px; /* Cao hơn một chút cho cảm giác sang trọng */
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-main);
+}
+
+.date-filter-btn i{
+    font-size: 15px;
+}
+
+.date-filter-btn:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.date-filter-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.chevron {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Dropdown tinh chỉnh */
+.date-dropdown {
+    position: absolute;
+    top: calc(100% + 8px); /* Khoảng cách an toàn */
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    box-shadow: var(--shadow);
+    display: none;
+    z-index: 100;
+    animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.date-dropdown.active {
+    display: block;
+}
+
+.date-option {
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-main);
+    transition: 0.2s;
+}
+
+.date-option:hover {
+    background: var(--bg-hover);
+    color: var(--primary-color);
+}
+
+.date-option.active {
+    background: rgba(59, 130, 246, 0.08);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Đường kẻ phân cách */
+.divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 6px 10px;
+}
+
+/* Phần tùy chỉnh ngày */
+.custom-date-section {
+    padding: 10px;
+}
+
+.custom-date-section label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+#taskDateFilter {
+    width: 100%;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 0 10px;
+    font-size: 13px;
+    outline: none;
+    transition: 0.2s;
+}
+
+#taskDateFilter:focus {
+    border-color: var(--primary-color);
+}

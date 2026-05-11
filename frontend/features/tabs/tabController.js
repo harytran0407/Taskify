@@ -6,6 +6,7 @@ import { loadDashboardTab } from '../dashboard/dashboardView.js';
 import { loadTasks } from '../tasks/loadTask.js';
 import { setupModal } from '../tasks/ui/modal/setupModal.js';
 import { setupSaveTask } from '../tasks/services/saveTask.js';
+import { setupDateFilter } from '../tasks/ui/calendar/dateFilter.js';
 
 import { loadInformationTab } from '../user/loadUserInfo.js';
 import { editInformationTab } from '../user/userInfo.js';
@@ -26,6 +27,7 @@ export function loadTab(tab) {
         loadDashboardTab();
 
         // init dashboard features
+        setupDateFilter();
         loadTasks();
         setupModal();
         setupSaveTask();

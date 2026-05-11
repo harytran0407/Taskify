@@ -20,6 +20,9 @@ import { splitTasks } from './utils/taskUtils.js';
 
 import { editTaskModal } from './ui/modal/openModal.js';
 
+import { filterTaskByDate } from './services/filterTaskByDate.js';
+import { setupDateFilter } from './ui/calendar/dateFilter.js';
+
 import { loadDashboardTab } from '../dashboard/dashboardView.js';
 
 
@@ -27,6 +30,7 @@ import { loadDashboardTab } from '../dashboard/dashboardView.js';
 
 let taskEdit = [];
 let currentDetailTaskId = null;
+let selectedDate = new Date().toISOString().split('T')[0];
 
 
 /* ================= HELPERS ================= */
@@ -143,13 +147,25 @@ function editTaskUpdated() {
 
 /* ================= LOAD TASKS ================= */
 
-export async function loadTasks() {
+export async function loadTasks(date = selectedDate) {
 
     try {
 
+        // lưu state hiện tại
+        selectedDate = date;
+
+        
+
         const tasks = await fetchTasks();
 
-        renderTaskLists(tasks);
+        console.log(tasks);
+        console.log(selectedDate);
+
+        // filter theo dueDate
+        const filteredTasks =
+            filterTaskByDate(tasks, selectedDate);
+
+        renderTaskLists(filteredTasks);
 
     } catch (error) {
 
@@ -159,6 +175,7 @@ export async function loadTasks() {
             document.getElementById('taskList');
 
         if (taskList) {
+
             taskList.innerHTML =
                 '<p>Lỗi khi tải task</p>';
         }
@@ -208,6 +225,8 @@ if (!isBound) {
             currentDetailTaskId = null;
 
             await loadDashboardTab();
+
+            setupDateFilter(selectedDate);
 
             await loadTasks();
 
@@ -391,9 +410,8 @@ if (!isBound) {
 
 window.addEventListener(
     'taskAdded',
-    loadTasks
+    () => loadTasks()
 );
-
 
 window.addEventListener(
     'taskUpdated',
